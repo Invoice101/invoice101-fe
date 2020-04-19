@@ -4,7 +4,9 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {APIInterceptor} from './services/httpInterceptors/apiIntercepteor';
+import {ResponseInterceptor} from './services/httpInterceptors/ResponseInterceptor';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,10 @@ import {HttpClientModule} from '@angular/common/http';
     HttpClientModule,
     FontAwesomeModule,
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: APIInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../../../services/authentication.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
   loggingIn = false;
 
   constructor(private fb: FormBuilder,
+              private router: Router,
               private authenticationService: AuthenticationService) {
   }
 
@@ -33,7 +35,7 @@ export class LoginComponent implements OnInit {
     const {username, password} = this.loginForm.value;
     this.authenticationService.login(username, password).subscribe(response => {
       this.loggingIn = false;
-      console.log(response);
+      this.router.navigate(['/dashboard']);
     }, errorResponse => {
       this.loggingIn = false;
       this.loginError.hasError = true;
