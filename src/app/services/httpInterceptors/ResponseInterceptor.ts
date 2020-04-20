@@ -6,10 +6,12 @@ import {Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
 import {AuthenticationService} from '../authentication.service';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class ResponseInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthenticationService) {
+  constructor(private authService: AuthenticationService,
+              private router: Router) {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -17,7 +19,7 @@ export class ResponseInterceptor implements HttpInterceptor {
     }, (error) => {
       if (error.status === 401 && window.location.href.indexOf('login') === -1) {
         this.authService.clearCredentials();
-        window.location.reload();
+        this.router.navigate(['/login']);
       }
     }));
   }

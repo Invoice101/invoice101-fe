@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-
+  // base_url: 'https://api.invoice101.in/api/'
   base_url: 'http://localhost:8000/api/'
 };
 
