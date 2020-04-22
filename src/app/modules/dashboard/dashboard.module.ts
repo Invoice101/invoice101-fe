@@ -6,7 +6,8 @@ import { DashboardBaseComponent } from './components/layout/dashboard-base/dashb
 import { DashboardHeaderComponent } from './components/layout/dashboard-header/dashboard-header.component';
 import { DashboardSidebarComponent } from './components/layout/dashboard-sidebar/dashboard-sidebar.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDropdownModule, NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap';
+import {UiComponentsModule} from '../uicomponents/uicomponents.module';
 
 
 @NgModule({
@@ -20,7 +21,9 @@ import {NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     DashboardRoutingModule,
     FontAwesomeModule,
-    NgbPopoverModule
+    NgbPopoverModule,
+    UiComponentsModule,
+    NgbDropdownModule
   ]
 })
 export class DashboardModule {

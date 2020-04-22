@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../../../services/authentication.service';
 import {Router} from '@angular/router';
+import {delay} from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -33,13 +34,15 @@ export class LoginComponent implements OnInit {
     this.loginError.hasError = false;
 
     const {username, password} = this.loginForm.value;
-    this.authenticationService.login(username, password).subscribe(response => {
-      this.loggingIn = false;
-      this.router.navigate(['/dashboard']);
-    }, errorResponse => {
-      this.loggingIn = false;
-      this.loginError.hasError = true;
-      this.loginError.errorMessage = errorResponse.error.detail;
-    });
+    this.authenticationService.login(username, password)
+      .pipe(delay(1000))
+      .subscribe(response => {
+        this.router.navigate(['/dashboard']);
+        this.loggingIn = false;
+      }, errorResponse => {
+        this.loggingIn = false;
+        this.loginError.hasError = true;
+        this.loginError.errorMessage = errorResponse.error.detail;
+      });
   }
 }

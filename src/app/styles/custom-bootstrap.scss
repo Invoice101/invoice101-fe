@@ -19,6 +19,9 @@ $btn-padding-x-sm: .375rem !default;
 $btn-padding-y-lg: .375rem !default;
 $btn-padding-x-lg: .75rem !default;
 
+.dropdown-toggle::after {
+  display: none !important;
+}
 
 // Bootstrap Imports
 @import "~bootstrap/scss/functions";

@@ -2,6 +2,17 @@
   min-height: 100vh;
 }
 
-.body-wrapper {
+.content-wrapper {
   flex: 1 1 auto;
+}
+
+
+@media (min-width: 482px) {
+  .content-wrapper {
+    display: flex;
+  }
+
+  .body-wrapper {
+    flex: 1 1 auto;
+  }
 }

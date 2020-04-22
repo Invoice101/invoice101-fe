@@ -1,0 +1,18 @@
+.icon-wrapper {
+  text-transform: uppercase;
+  height: 42px;
+  width: 42px;
+  background-color: #bbb;
+  border-radius: 50%;
+  position: relative;
+
+  i {
+    font-size: 1.7rem;
+    font-style: normal;
+    font-weight: normal;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: absolute;
+    top: 2px;
+  }
+}

@@ -3,4 +3,7 @@ export class UserInterface {
   username: string;
   email: string;
   mobile_no: string;
+
+  name: string;
+  profile_image: string;
 }
