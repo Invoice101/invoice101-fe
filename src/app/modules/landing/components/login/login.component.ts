@@ -40,7 +40,6 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(username, password)
       .pipe(delay(1000))
       .subscribe(() => {
-        console.log(this.returnUrl);
         if (this.returnUrl) {
           this.router.navigateByUrl(this.returnUrl);
         } else {
