@@ -5,18 +5,18 @@ import {DashboardBaseComponent} from './components/layout/dashboard-base/dashboa
 import {ListCustomerComponent} from './components/customer/list-customer/list-customer.component';
 import {CreateCustomerComponent} from './components/customer/create-customer/create-customer.component';
 
+const CUSTOMER_ROUTES: Routes = [
+  {path: 'list', component: ListCustomerComponent},
+  {path: 'create', component: CreateCustomerComponent},
+];
+
 const routes: Routes = [
   {
     path: '', component: DashboardBaseComponent, children: [
-      {path: '', component: DashboardHomeComponent}
+      {path: '', component: DashboardHomeComponent},
+      {path: 'customer', children: CUSTOMER_ROUTES}
     ]
   },
-  {
-    path: 'customer/', children: [
-      {path: 'list/', component: ListCustomerComponent},
-      {path: 'create/', component: CreateCustomerComponent},
-    ]
-  }
 ];
 
 @NgModule({

@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {CustomerService} from '../../../../../services/customer.service';
 import {CustomerInterface} from '../../../../../interfaces/customer.interface';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {CreateCustomerComponent} from '../create-customer/create-customer.component';
 
 @Component({
   selector: 'app-list-customer',
@@ -15,11 +17,20 @@ export class ListCustomerComponent implements OnInit {
   previousUrl: string;
   count: number;
 
-  constructor(private customerService: CustomerService) {
+  constructor(private customerService: CustomerService,
+              private modalService: NgbModal) {
   }
 
   ngOnInit(): void {
     this.fetchCustomers(null);
+  }
+
+  createCustomer() {
+    const modal = this.modalService.open(CreateCustomerComponent);
+    modal.result.then(response => {
+      this.customers.push(response);
+    }, () => {
+    });
   }
 
   private fetchCustomers(link: string) {
