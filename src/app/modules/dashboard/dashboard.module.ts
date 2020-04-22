@@ -13,6 +13,7 @@ import {ListCustomerComponent} from './components/customer/list-customer/list-cu
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgSelectModule} from '@ng-select/ng-select';
 import {NgBootstrapFormValidationModule} from 'ng-bootstrap-form-validation';
+import {CustomerTileComponent} from './components/customer/customer-tile/customer-tile.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {NgBootstrapFormValidationModule} from 'ng-bootstrap-form-validation';
     DashboardHeaderComponent,
     DashboardSidebarComponent,
     CreateCustomerComponent,
-    ListCustomerComponent
+    ListCustomerComponent,
+    CustomerTileComponent
   ],
   imports: [
     CommonModule,

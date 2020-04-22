@@ -1,3 +1,15 @@
-<div>
-  <button (click)="createCustomer()" class="btn btn-sm btn-primary" type="button">Create Customer</button>
+<div class="p-4">
+  <div class="d-flex border-bottom align-items-center">
+    <h1>Customers</h1>
+    <div class="ml-auto">
+      <button (click)="createCustomer()" class="btn btn-primary" type="button">
+        <fa-icon [icon]="farPlusSquare"></fa-icon>
+        Create
+      </button>
+    </div>
+  </div>
+
+  <div class="pt-4 px-4 list-wrapper">
+    <app-customer-tile *ngFor="let customer of customers" [customer]="customer"></app-customer-tile>
+  </div>
 </div>
