@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../../../services/authentication.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {delay} from 'rxjs/operators';
 
 @Component({
@@ -16,9 +16,11 @@ export class LoginComponent implements OnInit {
     hasError: false
   };
   loggingIn = false;
+  private returnUrl: string;
 
   constructor(private fb: FormBuilder,
               private router: Router,
+              private route: ActivatedRoute,
               private authenticationService: AuthenticationService) {
   }
 
@@ -27,6 +29,7 @@ export class LoginComponent implements OnInit {
       username: this.fb.control('', [Validators.required, Validators.maxLength(255)]),
       password: this.fb.control('', [Validators.required])
     });
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || null;
   }
 
   login() {
@@ -36,8 +39,13 @@ export class LoginComponent implements OnInit {
     const {username, password} = this.loginForm.value;
     this.authenticationService.login(username, password)
       .pipe(delay(1000))
-      .subscribe(response => {
-        this.router.navigate(['/dashboard']);
+      .subscribe(() => {
+        console.log(this.returnUrl);
+        if (this.returnUrl) {
+          this.router.navigateByUrl(this.returnUrl);
+        } else {
+          this.router.navigate(['/dashboard']);
+        }
         this.loggingIn = false;
       }, errorResponse => {
         this.loggingIn = false;
