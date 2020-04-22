@@ -4,6 +4,7 @@ import {CustomerInterface} from '../../../../../interfaces/customer.interface';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {CreateCustomerComponent} from '../create-customer/create-customer.component';
 import {faPlusSquare as farPlusSquare} from '@fortawesome/free-regular-svg-icons';
+import {faFilter, faSearch} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-list-customer',
@@ -17,7 +18,10 @@ export class ListCustomerComponent implements OnInit {
   nextUrl: string;
   previousUrl: string;
   count: number;
+
   farPlusSquare = farPlusSquare;
+  faFilter = faFilter;
+  faSearch = faSearch;
 
   constructor(private customerService: CustomerService,
               private modalService: NgbModal) {

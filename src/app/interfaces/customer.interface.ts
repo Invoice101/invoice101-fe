@@ -14,4 +14,6 @@ export interface CustomerInterface {
   city: string;
   state: number;
   pin_code: string;
+
+  image: string;
 }

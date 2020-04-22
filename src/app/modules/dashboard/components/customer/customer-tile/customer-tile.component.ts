@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CustomerInterface} from '../../../../../interfaces/customer.interface';
+import {faEllipsisV} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-customer-tile',
@@ -8,6 +9,7 @@ import {CustomerInterface} from '../../../../../interfaces/customer.interface';
 })
 export class CustomerTileComponent implements OnInit {
   @Input() customer: CustomerInterface;
+  faEllipsisV = faEllipsisV;
 
   constructor() {
   }

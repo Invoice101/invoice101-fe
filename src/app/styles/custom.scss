@@ -7,11 +7,20 @@
 }
 
 label {
-  margin-bottom: 1px;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 ng-select {
   min-width: 100%;
+}
+
+.ng-select .ng-select-container {
+  min-height: 28.38px
+}
+
+.ng-select.ng-select-single .ng-select-container {
+  height: 28.38px;
 }
 
 .app-page-title {

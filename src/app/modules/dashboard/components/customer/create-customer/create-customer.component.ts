@@ -68,9 +68,9 @@ export class CreateCustomerComponent implements OnInit {
       email: this.fb.control('', [Validators.required, Validators.maxLength(254), Validators.email]),
 
       company: this.fb.control('', Validators.maxLength(255)),
-      mobile_no: this.fb.control('', Validators.maxLength(15)),
+      mobile_no: this.fb.control('', [Validators.maxLength(15), Validators.pattern('^[0-9]{0,15}$')]),
 
-      gstin: this.fb.control('', [Validators.maxLength(15), Validators.pattern('^\d{2}[a-zA-Z]{5}\d{4}[a-zA-Z][a-zA-Z\d][zZ][a-zA-Z\d]$')]),
+      gstin: this.fb.control('', [Validators.maxLength(15), Validators.pattern('^[0-9]{2}[a-zA-Z]{5}[0-9]{4}[a-zA-Z][a-zA-Z0-9][zZ][a-zA-Z0-9]$')]),
       address_line_1: this.fb.control('', Validators.maxLength(511)),
       address_line_2: this.fb.control('', Validators.maxLength(511)),
       city: this.fb.control('', Validators.maxLength(100)),
