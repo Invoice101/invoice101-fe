@@ -7,7 +7,8 @@
   <div class="text-center">
     <app-loading *ngIf="initialLoading"></app-loading>
   </div>
-  <form *ngIf="customerForm && !initialLoading" [formGroup]="customerForm">
+  <form (validSubmit)="createCustomer()" *ngIf="customerForm && !initialLoading"
+        [formGroup]="customerForm" id="customerCreateForm">
     <div class="form-group d-sm-flex d-block">
       <label class="col-sm-3 col-form-label col-form-label-sm" for="customer_name">Name</label>
       <div class="col-sm-9">
@@ -86,7 +87,5 @@
 </div>
 
 <div class="modal-footer">
-  <button (click)="createCustomer()" [disabled]="!customerForm.valid"
-          class="btn btn-sm btn-primary">Create
-  </button>
+  <button class="btn btn-sm btn-primary" form="customerCreateForm" type="submit">Create</button>
 </div>

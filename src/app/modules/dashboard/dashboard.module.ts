@@ -12,6 +12,7 @@ import {CreateCustomerComponent} from './components/customer/create-customer/cre
 import {ListCustomerComponent} from './components/customer/list-customer/list-customer.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgSelectModule} from '@ng-select/ng-select';
+import {NgBootstrapFormValidationModule} from 'ng-bootstrap-form-validation';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import {NgSelectModule} from '@ng-select/ng-select';
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
+    NgBootstrapFormValidationModule,
     DashboardRoutingModule,
     FontAwesomeModule,
     NgbPopoverModule,

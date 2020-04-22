@@ -7,6 +7,7 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {APIInterceptor} from './services/httpInterceptors/apiIntercepteor';
 import {ResponseInterceptor} from './services/httpInterceptors/ResponseInterceptor';
+import {NgBootstrapFormValidationModule} from 'ng-bootstrap-form-validation';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import {ResponseInterceptor} from './services/httpInterceptors/ResponseIntercept
     AppRoutingModule,
     HttpClientModule,
     FontAwesomeModule,
+    NgBootstrapFormValidationModule.forRoot()
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: APIInterceptor, multi: true},
