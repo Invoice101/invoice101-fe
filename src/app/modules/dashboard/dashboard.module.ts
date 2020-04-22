@@ -8,6 +8,8 @@ import { DashboardSidebarComponent } from './components/layout/dashboard-sidebar
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {NgbDropdownModule, NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap';
 import {UiComponentsModule} from '../uicomponents/uicomponents.module';
+import { CreateCustomerComponent } from './components/customer/create-customer/create-customer.component';
+import { ListCustomerComponent } from './components/customer/list-customer/list-customer.component';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import {UiComponentsModule} from '../uicomponents/uicomponents.module';
     DashboardHomeComponent,
     DashboardBaseComponent,
     DashboardHeaderComponent,
-    DashboardSidebarComponent
+    DashboardSidebarComponent,
+    CreateCustomerComponent,
+    ListCustomerComponent
   ],
   imports: [
     CommonModule,

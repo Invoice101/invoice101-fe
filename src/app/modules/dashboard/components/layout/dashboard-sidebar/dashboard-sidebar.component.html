@@ -1,10 +1,13 @@
 <div class="sidebar-wrapper border-right">
   <div class="sidebar-list-group d-flex align-items-center justify-content-around flex-sm-column">
-    <div class="sidebar-list-item text-light my-2" ngbPopover="Contacts" placement="right" triggers="mouseenter:mouseleave">
+    <div [routerLink]="['/dashboard/customer/list']" class="sidebar-list-item text-light my-2" ngbPopover="Contacts"
+         placement="right"
+         triggers="mouseenter:mouseleave">
       <fa-icon [icon]="faAddressBook"></fa-icon>
     </div>
 
-    <div class="sidebar-list-item text-light" ngbPopover="Invoices" placement="right" triggers="mouseenter:mouseleave">
+    <div class="sidebar-list-item text-light" ngbPopover="Invoices" placement="right" triggers="mouseenter:mouseleave"
+         [routerLink]="['/dashboard/invoice/list']">
       <fa-icon [icon]="faFilePdf"></fa-icon>
     </div>
   </div>
