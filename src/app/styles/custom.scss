@@ -13,3 +13,14 @@ label {
 ng-select {
   min-width: 100%;
 }
+
+.app-page-title {
+  display: flex;
+  align-items: center;
+  border-bottom: $border-width solid $border-color !important;
+  margin-bottom: 1rem;
+
+  h1 {
+    font-size: 1.8rem;
+  }
+}

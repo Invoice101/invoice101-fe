@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {USER_APIS} from '../constants/api.constants';
 import {AuthTokenInterface} from '../interfaces/authToken.interface';
-import {concat, Observable} from 'rxjs';
+import {concat, interval, Observable} from 'rxjs';
 import {delay, map, tap} from 'rxjs/operators';
 import {SessionService} from './session.service';
 import {UserInterface} from '../interfaces/user.interface';
@@ -14,6 +14,7 @@ export class AuthenticationService {
 
   constructor(private httpClient: HttpClient,
               private sessionService: SessionService) {
+    this.startAuthTokenRefresh();
   }
 
   login(username: string, password: string): Observable<AuthTokenInterface> {
@@ -21,7 +22,7 @@ export class AuthenticationService {
       this.httpClient.post<AuthTokenInterface>(USER_APIS.login, {username, password}).pipe(tap(response => {
         this.sessionService.token = response;
       }), delay(1000)),
-      this.httpClient.get<UserInterface>(USER_APIS.user_profile).pipe(tap(response => {
+      this.httpClient.get<UserInterface>(USER_APIS.userProfile).pipe(tap(response => {
         this.sessionService.user = response;
       }))
     ).pipe(map(responses => {
@@ -32,5 +33,22 @@ export class AuthenticationService {
 
   clearCredentials() {
     this.sessionService.clear();
+  }
+
+  private startAuthTokenRefresh() {
+    // Refresh Token every 5 minutes
+    interval(5 * 60 * 1000).subscribe(() => {
+      const token = this.sessionService.token;
+      if (!token?.refresh) {
+        return;
+      }
+      this.httpClient.post<AuthTokenInterface>(USER_APIS.refreshToken, {refresh: this.sessionService.token.refresh})
+        .subscribe(response => {
+          this.sessionService.token = {
+            access: response.access,
+            refresh: token.refresh
+          };
+        });
+    });
   }
 }

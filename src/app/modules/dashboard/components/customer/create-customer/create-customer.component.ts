@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {CustomerService} from '../../../../../services/customer.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {StateService} from '../../../../../services/state.service';
@@ -7,6 +6,7 @@ import {SessionService} from '../../../../../services/session.service';
 import {UserInterface} from '../../../../../interfaces/user.interface';
 import {StateInterface} from '../../../../../interfaces/state.interface';
 import {faTimes} from '@fortawesome/free-solid-svg-icons';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-create-customer',
@@ -22,7 +22,7 @@ export class CreateCustomerComponent implements OnInit {
 
   private user: UserInterface;
 
-  constructor(private modal: NgbActiveModal,
+  constructor(private location: Location,
               private customerService: CustomerService,
               private sessionService: SessionService,
               private fb: FormBuilder,
@@ -41,17 +41,16 @@ export class CreateCustomerComponent implements OnInit {
   }
 
   cancel() {
-    this.modal.dismiss();
+    this.location.back();
   }
 
   createCustomer() {
     const postObj = this.customerForm.getRawValue();
 
     this.isCreating = true;
-    this.customerService.createCustomer(postObj).subscribe(response => {
+    this.customerService.createCustomer(postObj).subscribe(() => {
       this.isCreating = false;
       // TODO: Show Toast Success
-      this.modal.close(response);
     }, () => {
       this.isCreating = false;
       // TODO: Show Toast Error

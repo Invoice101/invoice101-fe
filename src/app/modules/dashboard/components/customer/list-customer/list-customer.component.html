@@ -1,15 +1,13 @@
-<div class="p-4">
-  <div class="d-flex border-bottom align-items-center">
-    <h1>Customers</h1>
-    <div class="ml-auto">
-      <button (click)="createCustomer()" class="btn btn-primary" type="button">
-        <fa-icon [icon]="farPlusSquare"></fa-icon>
-        Create
-      </button>
-    </div>
+<div class="app-page-title align-items-center">
+  <h1>Customers</h1>
+  <div class="ml-auto">
+    <button [routerLink]="['/dashboard', 'customer', 'create']" class="btn btn-primary" type="button">
+      <fa-icon [icon]="farPlusSquare"></fa-icon>
+      Create
+    </button>
   </div>
+</div>
 
-  <div class="pt-4 px-4 list-wrapper">
-    <app-customer-tile *ngFor="let customer of customers" [customer]="customer"></app-customer-tile>
-  </div>
+<div class="pt-4 px-4 list-wrapper">
+  <app-customer-tile *ngFor="let customer of customers" [customer]="customer"></app-customer-tile>
 </div>

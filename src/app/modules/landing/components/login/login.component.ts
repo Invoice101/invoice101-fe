@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.authenticationService.clearCredentials();
     this.loginForm = this.fb.group({
       username: this.fb.control('', [Validators.required, Validators.maxLength(255)]),
       password: this.fb.control('', [Validators.required])
