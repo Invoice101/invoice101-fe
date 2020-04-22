@@ -13,7 +13,7 @@ export class CustomerService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getCustomers(params: HttpParams, link?: string): Observable<PaginatedResponseInterface<CustomerInterface>> {
+  getCustomers(params?: HttpParams, link?: string): Observable<PaginatedResponseInterface<CustomerInterface>> {
     if (link) {
       return this.httpClient.get<PaginatedResponseInterface<CustomerInterface>>(link);
     }
