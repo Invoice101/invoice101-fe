@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --open",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -28,6 +28,7 @@
     "@ng-bootstrap/ng-bootstrap": "^6.0.3",
     "@ng-select/ng-select": "^4.0.0",
     "bootstrap": "^4.4.1",
+    "cordova-plugin-background-mode": "^0.7.3",
     "ng-bootstrap-form-validation": "^5.0.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
