@@ -11,9 +11,11 @@ import {NgBootstrapFormValidationModule} from 'ng-bootstrap-form-validation';
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+        
   ],
   imports: [
     BrowserModule,
@@ -23,6 +25,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     FontAwesomeModule,
     NgBootstrapFormValidationModule.forRoot(),
     ToastrModule.forRoot()
+    
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: APIInterceptor, multi: true},

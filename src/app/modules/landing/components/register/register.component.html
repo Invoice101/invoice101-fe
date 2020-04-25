@@ -1,0 +1,64 @@
+<div class="registerWrapper d-flex align-items-center justify-content-center">
+
+<div class="card">
+    <div class="card-body">
+      <div>
+        <h1 class="logo-brand">Invoice 101 Registration</h1>
+      </div>
+      
+      <form [formGroup]="registerForm" autocomplete="off">
+        
+        <div class="form-group">
+          <label for="firstNameInput">First Name</label>
+          <input autocomplete="chrome-off" class="form-control" formControlName="firstName" id="firstNameInput"
+                 type="text">
+        </div>
+
+        <div class="form-group">
+          <label for="lastNameInput">Last Name</label>
+          <input autocomplete="chrome-off" class="form-control" formControlName="lastName" id="lastNameInput"
+                 type="text">
+        </div>
+
+        <div class="form-group">
+          <label for="emailInput">Email</label>
+          <input autocomplete="chrome-off" class="form-control" formControlName="email" id="emailInputInput"
+                 type="text">
+        </div>
+        
+        <div class="form-group">
+          <label for="passwordInput">Password</label>
+          <input autocomplete="chrome-off" class="form-control" formControlName="password" id="passwordInput"
+                 type="password">
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPasswordInput">ConfirmPassword</label>
+          <input autocomplete="chrome-off" class="form-control" formControlName="confirmPassword" id="confirmPasswordInput"
+                 type="password">
+        </div>
+
+        <div *ngIf="signInError.hasError && !signingIn" class="text-danger text-center my-4 small">
+          {{signInError.errorMessage}}
+        </div>
+
+        <div class="text-center">
+         
+          <button (click)="register()" class="btn btn-primary bt-sm" style="float: right;margin-left: 10px;">Register</button>
+          <button (click)="cancel()" class="btn btn-primary bt-sm" style="float: right;" >Cancel</button>
+          <!-- <button (click)="register()" [disabled]="!registerForm.valid" class="btn btn-primary bt-sm"
+                  type="button" *ngIf="!signingIn" style="float: right;margin-left: 10px;">
+            Register
+          </button>
+          <button (click)="cancel()" [disabled]="!registerForm.valid" class="btn btn-primary bt-sm"
+           type="button" *ngIf="!signingIn" style="float: right;">
+           Cancel
+          </button> -->
+          <app-loading *ngIf="signingIn"></app-loading>
+        </div>
+      </form>
+     
+    </div>
+</div>
+</div>
+

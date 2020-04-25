@@ -3,10 +3,11 @@
     <div class="card-body">
       <div>
         <h1 class="logo-brand">Invoice 101</h1>
+        <a routerLink="/forgotpassword" style="float: right; margin-bottom: 15px;">Forgot Password.?</a>
       </div>
       <form [formGroup]="loginForm" autocomplete="off" id="loginFormId">
         <div class="form-group">
-          <label for="userNameInput">Username</label>
+          <label for="userNameInput" style="margin-top: 15px;"> Username</label>
           <input autocomplete="chrome-off" class="form-control" formControlName="username" id="userNameInput"
                  type="text">
         </div>
@@ -22,8 +23,9 @@
         </div>
 
         <div class="text-center">
+          <label style="float: left;">Not a member yet.?<span><a routerLink="/register">SIGN IN</a></span></label>
           <button (click)="login()" [disabled]="!loginForm.valid" class="btn btn-primary bt-sm"
-                  *ngIf="!loggingIn" form="loginFormId" type="submit">
+                  *ngIf="!loggingIn" form="loginFormId" type="submit" style="float: right;">
             Login
           </button>
 
