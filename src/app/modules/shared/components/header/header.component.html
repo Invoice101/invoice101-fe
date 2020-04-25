@@ -4,8 +4,8 @@
   <div class="d-inline-block" ngbDropdown>
     <app-profile-icon [image]="user.profile_image" [name]="user.name" ngbDropdownToggle></app-profile-icon>
     <div aria-labelledby="dropdownBasic1" ngbDropdownMenu>
-      <button ngbDropdownItem [routerLink]="['/']">Profile</button>
-      <button ngbDropdownItem (click)="logout()">Logout</button>
+      <button [routerLink]="['/profile', 'edit']" ngbDropdownItem>Profile</button>
+      <button (click)="logout()" ngbDropdownItem>Logout</button>
     </div>
   </div>
 </header>

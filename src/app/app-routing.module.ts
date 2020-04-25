@@ -1,13 +1,15 @@
 import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {LandingModule} from './modules/landing/landing.module';
 import {DashboardModule} from './modules/dashboard/dashboard.module';
 import {AuthGuard} from './services/routerGuards/auth-guard.service';
+import {ProfileModule} from './modules/profile/profile.module';
 
 
 const routes: Routes = [
   {path: '', loadChildren: () => LandingModule},
-  {path: 'dashboard', loadChildren: () => DashboardModule, canActivate: [AuthGuard], canActivateChild: [AuthGuard]}
+  {path: 'dashboard', loadChildren: () => DashboardModule, canActivate: [AuthGuard], canActivateChild: [AuthGuard]},
+  {path: 'profile', loadChildren: () => ProfileModule, canActivate: [AuthGuard], canActivateChild: [AuthGuard]}
 ];
 
 @NgModule({

@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {SessionService} from '../../../../../services/session.service';
-import {UserInterface} from '../../../../../interfaces/user.interface';
-import {AuthenticationService} from '../../../../../services/authentication.service';
+import {UserInterface} from '../../../../interfaces/user.interface';
+import {SessionService} from '../../../../services/session.service';
 import {Router} from '@angular/router';
+import {AuthenticationService} from '../../../../services/authentication.service';
 
 @Component({
-  selector: 'app-dashboard-header',
-  templateUrl: './dashboard-header.component.html',
-  styleUrls: ['./dashboard-header.component.scss']
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
 })
-export class DashboardHeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit {
   user: UserInterface;
 
   constructor(private sessionService: SessionService,
@@ -25,4 +25,5 @@ export class DashboardHeaderComponent implements OnInit {
     this.authenticationService.clearCredentials();
     this.router.navigate(['/login']);
   }
+
 }
