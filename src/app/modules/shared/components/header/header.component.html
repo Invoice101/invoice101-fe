@@ -1,5 +1,5 @@
 <header class="d-flex justify-content-between align-items-center">
-  <div class="logo-brand logo">Invoice 101</div>
+  <div [routerLink]="['/dashboard']" class="logo-brand logo clickable">Invoice 101</div>
 
   <div class="d-inline-block" ngbDropdown>
     <app-profile-icon [image]="user.profile_image" [name]="user.name" ngbDropdownToggle></app-profile-icon>
