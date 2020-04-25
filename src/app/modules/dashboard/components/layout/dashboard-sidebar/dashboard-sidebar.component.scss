@@ -7,9 +7,19 @@
 
 .sidebar-list-group {
   padding: 0;
+  text-align: center;
 
   .sidebar-list-item {
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    height: 32px;
+    width: 32px;
+    margin: 5px 0;
+    outline: none;
+  }
+
+  .sidebar-list-item.active {
+    background-color: darkblue;
+    border-radius: 5px;
   }
 }

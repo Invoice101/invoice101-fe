@@ -7,8 +7,8 @@ import {ProfileModule} from './modules/profile/profile.module';
 
 const routes: Routes = [
   {path: '', loadChildren: () => LandingModule},
-  {path: 'dashboard', loadChildren: () => DashboardModule}
-  
+  {path: 'dashboard', loadChildren: () => DashboardModule, canActivate: [AuthGuard]},
+  {path: 'profile', loadChildren: () => ProfileModule, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

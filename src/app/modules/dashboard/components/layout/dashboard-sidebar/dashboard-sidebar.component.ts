@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {faAddressBook, faFilePdf} from '@fortawesome/free-solid-svg-icons';
+import {faAddressBook, faDollarSign, faFilePdf} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-dashboard-sidebar',
@@ -9,6 +9,7 @@ import {faAddressBook, faFilePdf} from '@fortawesome/free-solid-svg-icons';
 export class DashboardSidebarComponent implements OnInit {
   faAddressBook = faAddressBook;
   faFilePdf = faFilePdf;
+  faDollarSign = faDollarSign;
 
   constructor() {
   }

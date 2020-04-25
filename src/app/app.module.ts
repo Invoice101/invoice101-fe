@@ -15,7 +15,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
-        
   ],
   imports: [
     BrowserModule,
@@ -25,7 +24,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     FontAwesomeModule,
     NgBootstrapFormValidationModule.forRoot(),
     ToastrModule.forRoot()
-    
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: APIInterceptor, multi: true},

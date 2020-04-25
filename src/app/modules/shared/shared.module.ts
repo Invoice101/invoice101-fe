@@ -4,10 +4,14 @@ import {HeaderComponent} from './components/header/header.component';
 import {RouterModule} from '@angular/router';
 import {UiComponentsModule} from '../uicomponents/uicomponents.module';
 import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
+import {InputDebounceDirective} from './directives/input-debounce.directive';
 
 
 @NgModule({
-  declarations: [HeaderComponent],
+  declarations: [
+    HeaderComponent,
+    InputDebounceDirective
+  ],
   imports: [
     CommonModule,
     RouterModule,
@@ -15,7 +19,8 @@ import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
     NgbDropdownModule
   ],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    InputDebounceDirective
   ]
 })
 export class SharedModule {

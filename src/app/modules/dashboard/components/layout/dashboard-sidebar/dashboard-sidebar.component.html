@@ -1,14 +1,18 @@
 <div class="sidebar-wrapper border-right">
   <div class="sidebar-list-group d-flex align-items-center justify-content-around flex-sm-column">
-    <div [routerLink]="['/dashboard/contact/list']" class="sidebar-list-item text-light my-2" ngbPopover="Contacts"
-         placement="right"
-         triggers="mouseenter:mouseleave">
+    <div [routerLink]="['/dashboard/contact/list']" class="sidebar-list-item text-light" ngbPopover="Contacts"
+         placement="right" routerLinkActive="active" triggers="mouseenter:mouseleave">
       <fa-icon [icon]="faAddressBook"></fa-icon>
     </div>
 
-    <div class="sidebar-list-item text-light" ngbPopover="Invoices" placement="right" triggers="mouseenter:mouseleave"
-         [routerLink]="['/dashboard/invoice/list']">
+    <div [routerLink]="['/dashboard/invoice/list']" class="sidebar-list-item text-light" ngbPopover="Invoices"
+         placement="right" routerLinkActive="active" triggers="mouseenter:mouseleave">
       <fa-icon [icon]="faFilePdf"></fa-icon>
+    </div>
+
+    <div [routerLink]="['/dashboard/expenses/list']" class="sidebar-list-item text-light" ngbPopover="Expenses"
+         placement="right" routerLinkActive="active" triggers="mouseenter:mouseleave">
+      <fa-icon [icon]="faDollarSign"></fa-icon>
     </div>
   </div>
 </div>
