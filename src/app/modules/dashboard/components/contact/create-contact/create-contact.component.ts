@@ -7,7 +7,6 @@ import {StateInterface} from '../../../../../interfaces/state.interface';
 import {faPlusSquare as farPlusSquare, faTimes} from '@fortawesome/free-solid-svg-icons';
 import {Location} from '@angular/common';
 import {ContactService} from '../../../../../services/contact.service';
-import {CONTACT_TYPES} from '../../../../../constants/contact.constants';
 import {ToastrService} from 'ngx-toastr';
 
 @Component({
@@ -22,7 +21,6 @@ export class CreateContactComponent implements OnInit {
   farPlusSquare = farPlusSquare;
   faTimes = faTimes;
   isCreating: boolean;
-  customerTypes = CONTACT_TYPES;
 
   private user: UserInterface;
 
@@ -83,13 +81,13 @@ export class CreateContactComponent implements OnInit {
       billing_address_line_2: this.fb.control('', Validators.maxLength(511)),
       billing_city: this.fb.control('', Validators.maxLength(100)),
       billing_state: this.fb.control('', [Validators.required]),
-      billing_pin_code: this.fb.control('', [Validators.pattern('^\d{6}$')]),
+      billing_pin_code: this.fb.control('', [Validators.pattern('^[0-9]{6}$')]),
 
       shipping_address_line_1: this.fb.control('', Validators.maxLength(511)),
       shipping_address_line_2: this.fb.control('', Validators.maxLength(511)),
       shipping_city: this.fb.control('', Validators.maxLength(100)),
       shipping_state: this.fb.control(''),
-      shipping_pin_code: this.fb.control('', [Validators.pattern('^\d{6}$')]),
+      shipping_pin_code: this.fb.control('', [Validators.pattern('^[0-9]{6}$')]),
     });
   }
 }
