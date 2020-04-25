@@ -1,29 +1,29 @@
 import {Component, OnInit} from '@angular/core';
-import {CustomerService} from '../../../../../services/customer.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {StateService} from '../../../../../services/state.service';
 import {SessionService} from '../../../../../services/session.service';
 import {UserInterface} from '../../../../../interfaces/user.interface';
 import {StateInterface} from '../../../../../interfaces/state.interface';
-import {faTimes} from '@fortawesome/free-solid-svg-icons';
+import {faPlusSquare as farPlusSquare} from '@fortawesome/free-solid-svg-icons';
 import {Location} from '@angular/common';
+import {ContactService} from '../../../../../services/contact.service';
 
 @Component({
-  selector: 'app-create-customer',
-  templateUrl: './create-customer.component.html',
-  styleUrls: ['./create-customer.component.scss']
+  selector: 'app-create-contact',
+  templateUrl: './create-contact.component.html',
+  styleUrls: ['./create-contact.component.scss']
 })
-export class CreateCustomerComponent implements OnInit {
+export class CreateContactComponent implements OnInit {
   initialLoading: boolean;
   states: StateInterface[];
-  customerForm: FormGroup;
-  faTimes = faTimes;
+  contactForm: FormGroup;
+  farPlusSquare = farPlusSquare;
   isCreating: boolean;
 
   private user: UserInterface;
 
   constructor(private location: Location,
-              private customerService: CustomerService,
+              private contactService: ContactService,
               private sessionService: SessionService,
               private fb: FormBuilder,
               private stateService: StateService) {
@@ -44,11 +44,11 @@ export class CreateCustomerComponent implements OnInit {
     this.location.back();
   }
 
-  createCustomer() {
-    const postObj = this.customerForm.getRawValue();
+  createContact() {
+    const postObj = this.contactForm.getRawValue();
 
     this.isCreating = true;
-    this.customerService.createCustomer(postObj).subscribe(() => {
+    this.contactService.createContact(postObj).subscribe(() => {
       this.isCreating = false;
       // TODO: Show Toast Success
     }, () => {
@@ -62,7 +62,7 @@ export class CreateCustomerComponent implements OnInit {
   }
 
   private buildForm() {
-    this.customerForm = this.fb.group({
+    this.contactForm = this.fb.group({
       owner: this.fb.control(this.user.id, Validators.required),
       name: this.fb.control('', [Validators.required, Validators.maxLength(255)]),
       email: this.fb.control('', [Validators.required, Validators.maxLength(254), Validators.email]),

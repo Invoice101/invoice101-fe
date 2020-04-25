@@ -8,12 +8,12 @@ import {DashboardSidebarComponent} from './components/layout/dashboard-sidebar/d
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {NgbDropdownModule, NgbModalModule, NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap';
 import {UiComponentsModule} from '../uicomponents/uicomponents.module';
-import {CreateCustomerComponent} from './components/customer/create-customer/create-customer.component';
-import {ListCustomerComponent} from './components/customer/list-customer/list-customer.component';
+import {CreateContactComponent} from './components/contact/create-contact/create-contact.component';
+import {ListContactComponent} from './components/contact/list-contact/list-contact.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgSelectModule} from '@ng-select/ng-select';
 import {NgBootstrapFormValidationModule} from 'ng-bootstrap-form-validation';
-import {CustomerTileComponent} from './components/customer/customer-tile/customer-tile.component';
+import {ContactTileComponent} from './components/contact/customer-tile/contact-tile.component';
 
 
 @NgModule({
@@ -22,9 +22,9 @@ import {CustomerTileComponent} from './components/customer/customer-tile/custome
     DashboardBaseComponent,
     DashboardHeaderComponent,
     DashboardSidebarComponent,
-    CreateCustomerComponent,
-    ListCustomerComponent,
-    CustomerTileComponent
+    CreateContactComponent,
+    ListContactComponent,
+    ContactTileComponent
   ],
   imports: [
     CommonModule,

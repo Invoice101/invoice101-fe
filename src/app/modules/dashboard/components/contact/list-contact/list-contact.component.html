@@ -1,0 +1,31 @@
+<div class="app-page-title align-items-center">
+  <h1>Contact</h1>
+  <div class="ml-auto">
+    <button [routerLink]="['/dashboard', 'contact', 'create']" class="btn btn-primary" type="button">
+      <fa-icon [icon]="farPlusSquare"></fa-icon>
+      Create
+    </button>
+  </div>
+</div>
+
+<div class="card flex-row">
+  <div class="filter p-2 border-right clickable" ngbDropdown>
+    <div ngbDropdownToggle>
+      <fa-icon [icon]="faFilter"></fa-icon>
+      Filter
+    </div>
+    <div aria-labelledby="dropdownBasic1" ngbDropdownMenu>
+      <div class="p-2">
+
+      </div>
+    </div>
+  </div>
+  <div class="search p-2 d-flex align-items-center justify-content-center">
+    <fa-icon [icon]="faSearch"></fa-icon>
+    <input class="custom-search" placeholder="Search" title="Search" type="text">
+  </div>
+</div>
+
+<div class="pt-4 list-wrapper">
+  <app-contact-tile *ngFor="let contact of contacts" [customer]="contact"></app-contact-tile>
+</div>

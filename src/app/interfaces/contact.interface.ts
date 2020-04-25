@@ -1,4 +1,4 @@
-export interface CustomerInterface {
+export interface ContactInterface {
   id: string;
 
   owner: number;

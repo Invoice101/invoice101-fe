@@ -2,19 +2,19 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {DashboardHomeComponent} from './components/dashboard-home/dashboard-home.component';
 import {DashboardBaseComponent} from './components/layout/dashboard-base/dashboard-base.component';
-import {ListCustomerComponent} from './components/customer/list-customer/list-customer.component';
-import {CreateCustomerComponent} from './components/customer/create-customer/create-customer.component';
+import {ListContactComponent} from './components/contact/list-contact/list-contact.component';
+import {CreateContactComponent} from './components/contact/create-contact/create-contact.component';
 
-const CUSTOMER_ROUTES: Routes = [
-  {path: 'list', component: ListCustomerComponent},
-  {path: 'create', component: CreateCustomerComponent},
+const CONTACT_ROUTES: Routes = [
+  {path: 'list', component: ListContactComponent},
+  {path: 'create', component: CreateContactComponent},
 ];
 
 const routes: Routes = [
   {
     path: '', component: DashboardBaseComponent, children: [
       {path: '', component: DashboardHomeComponent},
-      {path: 'customer', children: CUSTOMER_ROUTES}
+      {path: 'contact', children: CONTACT_ROUTES}
     ]
   },
 ];

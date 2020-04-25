@@ -1,6 +1,9 @@
 <div class="app-page-title">
-  <h1>Create Customer</h1>
-  <button class="btn btn-primary ml-auto" form="customerCreateForm" type="submit">Create</button>
+  <h1>Create Contact</h1>
+  <button class="btn btn-primary ml-auto" form="contactCreateForm" type="submit">
+    <fa-icon [icon]="farPlusSquare"></fa-icon>
+    Create
+  </button>
 </div>
 
 <div class="text-center">
@@ -9,11 +12,11 @@
 
 <div class="card contactCard">
   <div class="card-body">
-    <form (validSubmit)="createCustomer()" *ngIf="customerForm && !initialLoading"
-          [formGroup]="customerForm" class="row" id="customerCreateForm">
+    <form (validSubmit)="createContact()" *ngIf="contactForm && !initialLoading"
+          [formGroup]="contactForm" class="row" id="contactCreateForm">
       <div class="form-group col-12 col-sm-6">
-        <label class="col-form-label col-form-label-sm" for="customer_name">Name</label>
-        <input class="form-control form-control-sm" formControlName="name" id="customer_name" type="text">
+        <label class="col-form-label col-form-label-sm" for="contact_name">Name</label>
+        <input class="form-control form-control-sm" formControlName="name" id="contact_name" type="text">
       </div>
 
       <div class="form-group col-12 col-sm-6">

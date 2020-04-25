@@ -7,8 +7,8 @@ export const USER_APIS = {
 };
 
 
-export const CUSTOMER_APIS = {
-  customer: environment.base_url + 'customer/customer/'
+export const CONTACT_APIS = {
+  contact: environment.base_url + 'contacts/contact/'
 };
 
 export const CORE_APIS = {
