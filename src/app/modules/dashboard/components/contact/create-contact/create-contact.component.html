@@ -1,9 +1,16 @@
 <div class="app-page-title">
   <h1>Create Contact</h1>
-  <button class="btn btn-primary ml-auto" form="contactCreateForm" type="submit">
-    <fa-icon [icon]="farPlusSquare"></fa-icon>
-    Create
-  </button>
+
+  <div class="page-actions">
+    <button (click)="cancel()" class="btn btn-danger" type="button">
+      <fa-icon [icon]="faTimes"></fa-icon>
+      Cancel
+    </button>
+    <button class="btn btn-primary ml-2" form="contactCreateForm" type="submit">
+      <fa-icon [icon]="farPlusSquare"></fa-icon>
+      Create
+    </button>
+  </div>
 </div>
 
 <div class="text-center">
@@ -13,63 +20,122 @@
 <div class="card contactCard">
   <div class="card-body">
     <form (validSubmit)="createContact()" *ngIf="contactForm && !initialLoading"
-          [formGroup]="contactForm" class="row" id="contactCreateForm">
-      <div class="form-group col-12 col-sm-6">
-        <label class="col-form-label col-form-label-sm" for="contact_name">Name</label>
-        <input class="form-control form-control-sm" formControlName="name" id="contact_name" type="text">
+          [formGroup]="contactForm" id="contactCreateForm">
+      <div class="row">
+        <div class="form-group col-12 col-sm-6">
+          <label class="col-form-label col-form-label-sm" for="contact_name">Name</label>
+          <input class="form-control form-control-sm" formControlName="name" id="contact_name" type="text">
+        </div>
+
+        <div class="form-group col-12 col-sm-6">
+          <label class="col-form-label col-form-label-sm" for="email">Email</label>
+          <input class="form-control form-control-sm" formControlName="email" id="email" type="text">
+        </div>
+
+        <div class="form-group col-12 col-sm-6">
+          <label class="col-form-label col-form-label-sm" for="mobile">Mobile No</label>
+          <input class="form-control form-control-sm mobile_input" formControlName="mobile_no" id="mobile"
+                 type="text">
+        </div>
+
+        <div class="form-group col-12 col-sm-6">
+          <label class="col-form-label col-form-label-sm" for="company">Company</label>
+          <input class="form-control form-control-sm" formControlName="company" id="company" type="text">
+        </div>
+
+        <div class="form-group col-12 col-sm-6">
+          <label class="col-form-label col-form-label-sm" for="gstin">GSTIN</label>
+          <input class="form-control form-control-sm" formControlName="gstin" id="gstin" type="text">
+        </div>
+
+        <div class="col-12 col-sm-6">
+          <div class="d-block d-sm-flex align-items-center justify-content-around h-100 mb-sm-0 mb-3">
+            <div class="col-12 col-sm-6 form-check">
+              <input class="form-check-input" formControlName="is_customer" id="customer" type="checkbox">
+              <label class="form-check-label" for="customer"> Customer </label>
+            </div>
+            <div class="col-12 col-sm-6 form-check">
+              <input class="form-check-input" formControlName="is_supplier" id="supplier" type="checkbox">
+              <label class="form-check-label" for="supplier"> Supplier </label>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="form-group col-12 col-sm-6">
-        <label class="col-form-label col-form-label-sm" for="email">Email</label>
-        <input class="form-control form-control-sm" formControlName="email" id="email" type="text">
-      </div>
+      <div class="row mt-4">
+        <div class="col-12 col-md-6">
+          <h6 class="border-bottom">Billing Address</h6>
 
-      <div class="form-group col-12 col-sm-6">
-        <label class="col-form-label col-form-label-sm" for="mobile">Mobile No</label>
-        <input class="form-control form-control-sm mobile_input" formControlName="mobile_no" id="mobile"
-               type="text">
-      </div>
+          <div class="form-group">
+            <label class="col-form-label col-form-label-sm" for="billing_address_line_1">Line 1</label>
+            <input class="form-control form-control-sm" formControlName="billing_address_line_1"
+                   id="billing_address_line_1"
+                   type="text">
+          </div>
 
-      <div class="form-group col-12 col-sm-6">
-        <label class="col-form-label col-form-label-sm" for="company">Company</label>
-        <input class="form-control form-control-sm" formControlName="company" id="company" type="text">
-      </div>
+          <div class="form-group">
+            <label class="col-form-label col-form-label-sm" for="billing_address_line_2">Line 2</label>
+            <input class="form-control form-control-sm" formControlName="billing_address_line_2"
+                   id="billing_address_line_2"
+                   type="text">
+          </div>
 
-      <div class="form-group col-12 col-sm-6">
-        <label class="col-form-label col-form-label-sm" for="gstin">GSTIN</label>
-        <input class="form-control form-control-sm" formControlName="gstin" id="gstin" type="text">
-      </div>
+          <div class="form-group">
+            <label class="col-form-label col-form-label-sm" for="billing_city">City</label>
+            <input class="form-control form-control-sm" formControlName="billing_city" id="billing_city" type="text">
+          </div>
 
-      <div class="col-12">
-        <h6 class="border-bottom">Address</h6>
-      </div>
+          <div class="form-group">
+            <label class="col-form-label col-form-label-sm" for="billing_state">State</label>
+            <ng-select [items]="states" [searchFn]="stateSearch" [searchable]="true"
+                       bindLabel="name" bindValue="id" class="" formControlName="billing_state"
+                       id="billing_state">
+            </ng-select>
+          </div>
 
-      <div class="form-group col-12 col-sm-6">
-        <label class="col-form-label col-form-label-sm" for="address_line_1">Line 1</label>
-        <input class="form-control form-control-sm" formControlName="address_line_1" id="address_line_1" type="text">
-      </div>
+          <div class="form-group">
+            <label class="col-form-label col-form-label-sm" for="billing_pin_code">PinCode</label>
+            <input class="form-control form-control-sm" formControlName="billing_pin_code" id="billing_pin_code"
+                   type="number">
+          </div>
+        </div>
 
-      <div class="form-group col-12 col-sm-6">
-        <label class="col-form-label col-form-label-sm" for="address_line_2">Line 2</label>
-        <input class="form-control form-control-sm" formControlName="address_line_2" id="address_line_2" type="text">
-      </div>
+        <div class="col-12 col-md-6">
+          <h6 class="border-bottom">Shipping Address</h6>
 
-      <div class="form-group col-12 col-sm-6">
-        <label class="col-form-label col-form-label-sm" for="city">City</label>
-        <input class="form-control form-control-sm" formControlName="city" id="city" type="text">
-      </div>
+          <div class="form-group">
+            <label class="col-form-label col-form-label-sm" for="shipping_address_line_1">Line 1</label>
+            <input class="form-control form-control-sm" formControlName="shipping_address_line_1"
+                   id="shipping_address_line_1"
+                   type="text">
+          </div>
 
-      <div class="form-group col-12 col-sm-6">
-        <label class="col-form-label col-form-label-sm" for="state">State</label>
-        <ng-select [items]="states" [searchFn]="stateSearch" [searchable]="true"
-                   bindLabel="name" bindValue="id" class="" formControlName="state"
-                   id="state">
-        </ng-select>
-      </div>
+          <div class="form-group">
+            <label class="col-form-label col-form-label-sm" for="shipping_address_line_2">Line 2</label>
+            <input class="form-control form-control-sm" formControlName="shipping_address_line_2"
+                   id="shipping_address_line_2"
+                   type="text">
+          </div>
 
-      <div class="form-group col-12 col-sm-6">
-        <label class="col-form-label col-form-label-sm" for="pin_code">PinCode</label>
-        <input class="form-control form-control-sm" formControlName="pin_code" id="pin_code" type="number">
+          <div class="form-group">
+            <label class="col-form-label col-form-label-sm" for="shipping_city">City</label>
+            <input class="form-control form-control-sm" formControlName="shipping_city" id="shipping_city" type="text">
+          </div>
+
+          <div class="form-group">
+            <label class="col-form-label col-form-label-sm" for="shipping_state">State</label>
+            <ng-select [items]="states" [searchFn]="stateSearch" [searchable]="true"
+                       bindLabel="name" bindValue="id" class="" formControlName="shipping_state"
+                       id="shipping_state">
+            </ng-select>
+          </div>
+
+          <div class="form-group">
+            <label class="col-form-label col-form-label-sm" for="shipping_pin_code">PinCode</label>
+            <input class="form-control form-control-sm" formControlName="shipping_pin_code" id="shipping_pin_code"
+                   type="number">
+          </div>
+        </div>
       </div>
     </form>
   </div>

@@ -4,9 +4,11 @@ import {StateService} from '../../../../../services/state.service';
 import {SessionService} from '../../../../../services/session.service';
 import {UserInterface} from '../../../../../interfaces/user.interface';
 import {StateInterface} from '../../../../../interfaces/state.interface';
-import {faPlusSquare as farPlusSquare} from '@fortawesome/free-solid-svg-icons';
+import {faPlusSquare as farPlusSquare, faTimes} from '@fortawesome/free-solid-svg-icons';
 import {Location} from '@angular/common';
 import {ContactService} from '../../../../../services/contact.service';
+import {CONTACT_TYPES} from '../../../../../constants/contact.constants';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-contact',
@@ -18,7 +20,9 @@ export class CreateContactComponent implements OnInit {
   states: StateInterface[];
   contactForm: FormGroup;
   farPlusSquare = farPlusSquare;
+  faTimes = faTimes;
   isCreating: boolean;
+  customerTypes = CONTACT_TYPES;
 
   private user: UserInterface;
 
@@ -26,6 +30,7 @@ export class CreateContactComponent implements OnInit {
               private contactService: ContactService,
               private sessionService: SessionService,
               private fb: FormBuilder,
+              private toast: ToastrService,
               private stateService: StateService) {
   }
 
@@ -50,10 +55,11 @@ export class CreateContactComponent implements OnInit {
     this.isCreating = true;
     this.contactService.createContact(postObj).subscribe(() => {
       this.isCreating = false;
-      // TODO: Show Toast Success
+      this.toast.success('Contact Created');
+      this.location.back();
     }, () => {
       this.isCreating = false;
-      // TODO: Show Toast Error
+      this.toast.success('Oops! Something went wrong.');
     });
   }
 
@@ -68,14 +74,22 @@ export class CreateContactComponent implements OnInit {
       email: this.fb.control('', [Validators.required, Validators.maxLength(254), Validators.email]),
 
       company: this.fb.control('', Validators.maxLength(255)),
+      is_customer: this.fb.control(true, Validators.maxLength(50)),
+      is_supplier: this.fb.control(false, Validators.maxLength(50)),
       mobile_no: this.fb.control('', [Validators.maxLength(15), Validators.pattern('^[0-9]{0,15}$')]),
 
       gstin: this.fb.control('', [Validators.maxLength(15), Validators.pattern('^[0-9]{2}[a-zA-Z]{5}[0-9]{4}[a-zA-Z][a-zA-Z0-9][zZ][a-zA-Z0-9]$')]),
-      address_line_1: this.fb.control('', Validators.maxLength(511)),
-      address_line_2: this.fb.control('', Validators.maxLength(511)),
-      city: this.fb.control('', Validators.maxLength(100)),
-      state: this.fb.control('', [Validators.required]),
-      pin_code: this.fb.control('', [Validators.pattern('^\d{6}$')]),
+      billing_address_line_1: this.fb.control('', Validators.maxLength(511)),
+      billing_address_line_2: this.fb.control('', Validators.maxLength(511)),
+      billing_city: this.fb.control('', Validators.maxLength(100)),
+      billing_state: this.fb.control('', [Validators.required]),
+      billing_pin_code: this.fb.control('', [Validators.pattern('^\d{6}$')]),
+
+      shipping_address_line_1: this.fb.control('', Validators.maxLength(511)),
+      shipping_address_line_2: this.fb.control('', Validators.maxLength(511)),
+      shipping_city: this.fb.control('', Validators.maxLength(100)),
+      shipping_state: this.fb.control(''),
+      shipping_pin_code: this.fb.control('', [Validators.pattern('^\d{6}$')]),
     });
   }
 }

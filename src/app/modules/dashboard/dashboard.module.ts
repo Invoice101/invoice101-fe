@@ -14,6 +14,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgSelectModule} from '@ng-select/ng-select';
 import {NgBootstrapFormValidationModule} from 'ng-bootstrap-form-validation';
 import {ContactTileComponent} from './components/contact/customer-tile/contact-tile.component';
+import {ToastrModule} from 'ngx-toastr';
 
 
 @NgModule({
@@ -24,12 +25,13 @@ import {ContactTileComponent} from './components/contact/customer-tile/contact-t
     DashboardSidebarComponent,
     CreateContactComponent,
     ListContactComponent,
-    ContactTileComponent
+    ContactTileComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    ToastrModule,
     NgSelectModule,
     NgBootstrapFormValidationModule,
     DashboardRoutingModule,

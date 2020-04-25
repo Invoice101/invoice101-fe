@@ -7,13 +7,20 @@ export interface ContactInterface {
   company: string;
   mobile_no: string;
 
+  type: 'CUSTOMER' | 'SUPPLIER';
   gstin: string;
 
-  address_line_1: string;
-  address_line_2: string;
-  city: string;
-  state: number;
-  pin_code: string;
+  billing_address_line_1: string;
+  billing_address_line_2: string;
+  billing_city: string;
+  billing_state: number;
+  billing_pin_code: string;
+
+  shipping_address_line_1: string;
+  shipping_address_line_2: string;
+  shipping_city: string;
+  shipping_state: number;
+  shipping_pin_code: string;
 
   image: string;
 }

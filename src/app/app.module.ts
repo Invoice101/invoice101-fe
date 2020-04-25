@@ -8,6 +8,8 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {APIInterceptor} from './services/httpInterceptors/apiIntercepteor';
 import {ResponseInterceptor} from './services/httpInterceptors/ResponseInterceptor';
 import {NgBootstrapFormValidationModule} from 'ng-bootstrap-form-validation';
+import {ToastrModule} from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -15,10 +17,12 @@ import {NgBootstrapFormValidationModule} from 'ng-bootstrap-form-validation';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     FontAwesomeModule,
-    NgBootstrapFormValidationModule.forRoot()
+    NgBootstrapFormValidationModule.forRoot(),
+    ToastrModule.forRoot()
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: APIInterceptor, multi: true},
