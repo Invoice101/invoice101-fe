@@ -3,6 +3,7 @@ import {ContactInterface} from '../../../../../interfaces/contact.interface';
 import {faPlusSquare as farPlusSquare} from '@fortawesome/free-regular-svg-icons';
 import {faFilter, faSearch} from '@fortawesome/free-solid-svg-icons';
 import {ContactService} from '../../../../../services/contact.service';
+import {HttpParams} from '@angular/common/http';
 
 @Component({
   selector: 'app-list-contact',
@@ -21,6 +22,8 @@ export class ListContactComponent implements OnInit {
   faFilter = faFilter;
   faSearch = faSearch;
 
+  searchText = '';
+
   constructor(private contactService: ContactService) {
   }
 
@@ -28,10 +31,15 @@ export class ListContactComponent implements OnInit {
     this.fetchContacts(null);
   }
 
-  private fetchContacts(link: string) {
+  fetchContacts(link: string) {
     this.isLoading = true;
 
-    this.contactService.getContacts(null, link).subscribe(response => {
+    let params = new HttpParams().set('page_size', '15');
+    if (this.searchText) {
+      params = params.set('search', this.searchText);
+    }
+
+    this.contactService.getContacts(params, link).subscribe(response => {
       this.isLoading = false;
       this.contacts = response.results;
       this.nextUrl = response.next;

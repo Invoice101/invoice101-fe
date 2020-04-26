@@ -22,10 +22,21 @@
   </div>
   <div class="search p-2 d-flex align-items-center justify-content-center">
     <fa-icon [icon]="faSearch"></fa-icon>
-    <input appInputDebounce class="custom-search" placeholder="Search" title="Search" type="text">
+    <input (debounceInput)="fetchContacts(null)"
+           [(ngModel)]="searchText" [disabled]="isLoading"
+           appInputDebounce class="custom-search" placeholder="Search" title="Search"
+           type="text">
   </div>
 </div>
 
-<div class="pt-4 list-wrapper">
+<div *ngIf="!isLoading" class="pt-4 list-wrapper">
   <app-contact-tile *ngFor="let contact of contacts" [customer]="contact"></app-contact-tile>
+</div>
+<div *ngIf="isLoading" class="text-center pt-4">
+  <app-loading></app-loading>
+</div>
+<div *ngIf="!isLoading" class="d-flex justify-content-center align-items-center mt-4">
+  <button (click)="fetchContacts(previousUrl)" [disabled]="!previousUrl" class="btn btn-sm btn-primary mx-2">< Previous
+  </button>
+  <button (click)="fetchContacts(nextUrl)" [disabled]="!nextUrl" class="btn btn-sm btn-primary mx-2">Next ></button>
 </div>
