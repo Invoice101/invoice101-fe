@@ -10,6 +10,11 @@
       <fa-icon [icon]="faFilePdf"></fa-icon>
     </div>
 
+    <div [routerLink]="['/dashboard/invoice/list']" class="sidebar-list-item text-light" ngbPopover="Products/Services"
+         placement="right" routerLinkActive="active" triggers="mouseenter:mouseleave">
+      <fa-icon [icon]="faShoppingCart"></fa-icon>
+    </div>
+
     <div [routerLink]="['/dashboard/expenses/list']" class="sidebar-list-item text-light" ngbPopover="Expenses"
          placement="right" routerLinkActive="active" triggers="mouseenter:mouseleave">
       <fa-icon [icon]="faDollarSign"></fa-icon>
