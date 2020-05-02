@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {StateService} from '../../../../../services/state.service';
+import {ExtraService} from '../../../../../services/extra.service';
 import {SessionService} from '../../../../../services/session.service';
 import {UserInterface} from '../../../../../interfaces/user.interface';
-import {StateInterface} from '../../../../../interfaces/state.interface';
+import {StateInterface} from '../../../../../interfaces/extra.interface';
 import {faPlusSquare as farPlusSquare, faTimes} from '@fortawesome/free-solid-svg-icons';
 import {Location} from '@angular/common';
 import {ContactService} from '../../../../../services/contact.service';
@@ -29,7 +29,7 @@ export class CreateContactComponent implements OnInit {
               private sessionService: SessionService,
               private fb: FormBuilder,
               private toast: ToastrService,
-              private stateService: StateService) {
+              private stateService: ExtraService) {
   }
 
   ngOnInit(): void {

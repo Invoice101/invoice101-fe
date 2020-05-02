@@ -5,7 +5,7 @@ import {DashboardRoutingModule} from './dashboard-routing.module';
 import {DashboardBaseComponent} from './components/layout/dashboard-base/dashboard-base.component';
 import {DashboardSidebarComponent} from './components/layout/dashboard-sidebar/dashboard-sidebar.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {NgbDropdownModule, NgbModalModule, NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDropdownModule, NgbModalModule, NgbPaginationModule, NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap';
 import {UiComponentsModule} from '../uicomponents/uicomponents.module';
 import {CreateContactComponent} from './components/contact/create-contact/create-contact.component';
 import {ListContactComponent} from './components/contact/list-contact/list-contact.component';
@@ -15,6 +15,8 @@ import {NgBootstrapFormValidationModule} from 'ng-bootstrap-form-validation';
 import {ContactTileComponent} from './components/contact/customer-tile/contact-tile.component';
 import {ToastrModule} from 'ngx-toastr';
 import {SharedModule} from '../shared/shared.module';
+import {ListProductsComponent} from './components/product/list-products/list-products.component';
+import {CreateProductComponent} from './components/product/create-product/create-product.component';
 
 
 @NgModule({
@@ -25,6 +27,8 @@ import {SharedModule} from '../shared/shared.module';
     CreateContactComponent,
     ListContactComponent,
     ContactTileComponent,
+    ListProductsComponent,
+    CreateProductComponent,
   ],
   imports: [
     CommonModule,
@@ -39,7 +43,8 @@ import {SharedModule} from '../shared/shared.module';
     UiComponentsModule,
     NgbDropdownModule,
     NgbModalModule,
-    SharedModule
+    SharedModule,
+    NgbPaginationModule
   ]
 })
 export class DashboardModule {

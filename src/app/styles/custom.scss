@@ -16,6 +16,10 @@ ng-select {
   min-width: 100%;
 }
 
+textarea {
+  resize: none;
+}
+
 .ng-select .ng-select-container {
   min-height: 28.38px
 }
@@ -36,5 +40,35 @@ ng-select {
 
   .page-actions {
     margin-left: auto;
+  }
+}
+
+
+/* Remove spinners for number webkit */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Remove spinners for number mozilla */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+/* Search CSS */
+.search_wrapper {
+  flex: 1 0 auto;
+
+  .custom-search {
+    width: 100%;
+    border: 0;
+    padding-left: .2rem;
+
+    &:disabled {
+      background: unset;
+      cursor: not-allowed;
+    }
   }
 }

@@ -20,7 +20,7 @@
       </div>
     </div>
   </div>
-  <div class="search p-2 d-flex align-items-center justify-content-center">
+  <div class="search_wrapper p-2 d-flex align-items-center justify-content-center">
     <fa-icon [icon]="faSearch"></fa-icon>
     <input (debounceInput)="fetchContacts(null)"
            [(ngModel)]="searchText" [disabled]="isLoading"
