@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProductService} from '../../../../../services/product.service';
 import {SessionService} from '../../../../../services/session.service';
@@ -6,6 +6,8 @@ import {ExtraService} from '../../../../../services/extra.service';
 import {UOMInterface} from '../../../../../interfaces/extra.interface';
 import {ToastrService} from 'ngx-toastr';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {ProductInterface} from '../../../../../interfaces/product.interface';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-create-product',
@@ -18,6 +20,9 @@ export class CreateProductComponent implements OnInit {
 
   initialLoading: boolean;
   isCreating: boolean;
+
+  @Input() mode: 'create' | 'edit' = 'create';
+  @Input() product: ProductInterface;
 
   constructor(private fb: FormBuilder,
               private sessionService: SessionService,
@@ -42,10 +47,17 @@ export class CreateProductComponent implements OnInit {
   createProduct() {
     this.isCreating = true;
     const postObj = this.productForm.getRawValue();
-    console.log(postObj);
 
-    this.productService.createProducts(postObj).subscribe(response => {
-      this.toast.success('Product created');
+    let apiCall: Observable<ProductInterface>;
+    const successMessage = `Product ${this.mode === 'create' ? 'created' : 'edited'}`;
+
+    if (this.mode === 'create') {
+      apiCall = this.productService.createProducts(postObj);
+    } else {
+      apiCall = this.productService.updateProduct(this.product.id, postObj);
+    }
+    apiCall.subscribe(response => {
+      this.toast.success(successMessage);
       this.isCreating = false;
       this.activeModal.close(response);
     }, () => {
@@ -61,12 +73,13 @@ export class CreateProductComponent implements OnInit {
   private buildForm() {
     this.productForm = this.fb.group({
       user: [this.sessionService.user.id],
-      name: this.fb.control('', [Validators.required, Validators.maxLength(500)]),
-      description: this.fb.control('', [Validators.maxLength(2000)]),
-      hsn_sac: this.fb.control('', [Validators.maxLength(30)]),
-      tax_percentage: this.fb.control(0, [Validators.maxLength(30), Validators.max(100), Validators.min(0)]),
-      price: this.fb.control(null, [Validators.required, Validators.max(1000000000), Validators.min(0)]),
-      uom: this.fb.control(null, Validators.required),
+      name: this.fb.control(this.product?.name || '', [Validators.required, Validators.maxLength(500)]),
+      description: this.fb.control(this.product?.description || '', [Validators.maxLength(2000)]),
+      hsn_sac: this.fb.control(this.product?.hsn_sac || '', [Validators.maxLength(30)]),
+      tax_percentage: this.fb.control(this.product?.tax_percentage || 0,
+        [Validators.maxLength(30), Validators.max(100), Validators.min(0)]),
+      price: this.fb.control(this.product?.price || null, [Validators.required, Validators.max(1000000000), Validators.min(0)]),
+      uom: this.fb.control(this.product?.uom || null, Validators.required),
     });
   }
 }

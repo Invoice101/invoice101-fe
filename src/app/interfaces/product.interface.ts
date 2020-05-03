@@ -7,4 +7,5 @@ export interface ProductInterface {
   hsn_sac: string;
   tax_percentage: string;
   price: number;
+  uom: string;
 }

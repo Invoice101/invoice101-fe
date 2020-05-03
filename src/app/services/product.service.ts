@@ -24,8 +24,8 @@ export class ProductService {
     return this.httpClient.post<ProductInterface>(PRODUCT_APIS.product, postObj);
   }
 
-  updateProduct(patchObj: object): Observable<ProductInterface> {
-    return this.httpClient.patch<ProductInterface>(PRODUCT_APIS.product, patchObj);
+  updateProduct(id: string, patchObj: object): Observable<ProductInterface> {
+    return this.httpClient.patch<ProductInterface>(PRODUCT_APIS.product + id + '/', patchObj);
   }
 
   getProductById(id: number): Observable<ProductInterface> {
