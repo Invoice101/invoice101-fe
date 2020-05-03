@@ -7,6 +7,9 @@ export interface ContactInterface {
   company: string;
   mobile_no: string;
 
+  is_customer: boolean;
+  is_supplier: boolean;
+
   type: 'CUSTOMER' | 'SUPPLIER';
   gstin: string;
 

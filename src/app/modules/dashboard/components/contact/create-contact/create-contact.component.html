@@ -1,5 +1,5 @@
 <div class="app-page-title">
-  <h1>Create Contact</h1>
+  <h1><span class="text-capitalize">{{mode}}</span> Contact</h1>
 
   <div class="page-actions">
     <button (click)="cancel()" class="btn btn-danger" type="button">
@@ -7,8 +7,8 @@
       Cancel
     </button>
     <button class="btn btn-primary ml-2" form="contactCreateForm" type="submit">
-      <fa-icon [icon]="farPlusSquare"></fa-icon>
-      Create
+      <fa-icon [icon]="mode === 'create'? faPlusSquare: faEdit"></fa-icon>
+      <span class="text-capitalize">{{mode}}</span>
     </button>
   </div>
 </div>

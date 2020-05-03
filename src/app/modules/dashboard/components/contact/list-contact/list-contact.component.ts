@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ContactInterface} from '../../../../../interfaces/contact.interface';
-import {faPlusSquare as farPlusSquare} from '@fortawesome/free-regular-svg-icons';
-import {faFilter, faSearch} from '@fortawesome/free-solid-svg-icons';
+import {faFilter, faPlusSquare, faSearch} from '@fortawesome/free-solid-svg-icons';
 import {ContactService} from '../../../../../services/contact.service';
 import {HttpParams} from '@angular/common/http';
 
@@ -18,7 +17,7 @@ export class ListContactComponent implements OnInit {
   previousUrl: string;
   count: number;
 
-  farPlusSquare = farPlusSquare;
+  faPlusSquare = faPlusSquare;
   faFilter = faFilter;
   faSearch = faSearch;
 

@@ -9,6 +9,7 @@ import {ListProductsComponent} from './components/product/list-products/list-pro
 const CONTACT_ROUTES: Routes = [
   {path: 'list', component: ListContactComponent},
   {path: 'create', component: CreateContactComponent},
+  {path: ':id/edit', component: CreateContactComponent},
 ];
 
 const PRODUCT_ROUTES: Routes = [
