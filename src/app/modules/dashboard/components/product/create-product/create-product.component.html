@@ -1,0 +1,54 @@
+<div class="modal-header">
+  <div class="modal-title">Create Product/Service</div>
+</div>
+
+<div class="modal-body">
+  <div class="text-center">
+    <app-loading *ngIf="initialLoading"></app-loading>
+  </div>
+
+  <form (validSubmit)="createProduct()" *ngIf="productForm && !initialLoading"
+        [formGroup]="productForm" id="createProductForm">
+    <div class="form-group">
+      <label class="col-form-label col-form-label-sm" for="product_name">Name</label>
+      <input class="form-control form-control-sm" formControlName="name" id="product_name" type="text">
+    </div>
+
+    <div class="form-group">
+      <label class="col-form-label col-form-label-sm" for="hsn_sac">HSN/SAC</label>
+      <input class="form-control form-control-sm" formControlName="hsn_sac" id="hsn_sac" type="text">
+    </div>
+
+    <div class="form-group">
+      <label class="col-form-label col-form-label-sm" for="description">Description</label>
+      <textarea class="form-control form-control-sm mobile_input" formControlName="description" id="description"
+                rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label class="col-form-label col-form-label-sm" for="price">Unit Price(Incl Tax)</label>
+      <input class="form-control form-control-sm" formControlName="price" id="price" step="any" type="number">
+    </div>
+
+    <div class="form-group">
+      <label class="col-form-label col-form-label-sm" for="uom">Unit of Measure</label>
+      <ng-select [items]="uoms" [searchFn]="uomSearch" [searchable]="true"
+                 bindLabel="name" bindValue="short_name" formControlName="uom" id="uom">
+      </ng-select>
+    </div>
+
+    <div class="form-group">
+      <label class="col-form-label col-form-label-sm" for="tax">Tax(%)</label>
+      <input class="form-control form-control-sm" formControlName="tax_percentage" id="tax" step="any" type="number">
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button (click)="cancel()" class="btn btn-sm btn-danger" type="button">
+    Cancel
+  </button>
+  <button class="btn btn-sm btn-primary ml-2" form="createProductForm" type="submit">
+    Create
+  </button>
+</div>

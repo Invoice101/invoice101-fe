@@ -1,7 +1,7 @@
 <div class="app-page-title align-items-center">
   <h1>Product/Service</h1>
   <div class="ml-auto">
-    <button [routerLink]="['/dashboard', 'product', 'create']" class="btn btn-primary" type="button">
+    <button (click)="createProduct()" class="btn btn-primary" type="button">
       <fa-icon [icon]="farPlusSquare"></fa-icon>
       Create
     </button>

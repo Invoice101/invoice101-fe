@@ -5,7 +5,6 @@ import {DashboardBaseComponent} from './components/layout/dashboard-base/dashboa
 import {ListContactComponent} from './components/contact/list-contact/list-contact.component';
 import {CreateContactComponent} from './components/contact/create-contact/create-contact.component';
 import {ListProductsComponent} from './components/product/list-products/list-products.component';
-import {CreateProductComponent} from './components/product/create-product/create-product.component';
 
 const CONTACT_ROUTES: Routes = [
   {path: 'list', component: ListContactComponent},
@@ -13,8 +12,7 @@ const CONTACT_ROUTES: Routes = [
 ];
 
 const PRODUCT_ROUTES: Routes = [
-  {path: 'list', component: ListProductsComponent},
-  {path: 'create', component: CreateProductComponent},
+  {path: 'list', component: ListProductsComponent}
 ];
 
 const routes: Routes = [

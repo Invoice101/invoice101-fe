@@ -12,6 +12,8 @@ import {HttpParams} from '@angular/common/http';
 import {ProductService} from '../../../../../services/product.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {IconDefinition} from '@fortawesome/fontawesome-common-types';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {CreateProductComponent} from '../create-product/create-product.component';
 
 @Component({
   selector: 'app-list-products',
@@ -36,12 +38,13 @@ export class ListProductsComponent implements OnInit {
 
   paginationHelper = {
     currentPage: 1,
-    pageSize: 2,
+    pageSize: 10,
     totalSize: 0
   };
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute,
+              private modal: NgbModal,
               private router: Router) {
   }
 
@@ -75,6 +78,14 @@ export class ListProductsComponent implements OnInit {
       relativeTo: this.route,
       queryParamsHandling: 'merge',
       queryParams
+    });
+  }
+
+  createProduct() {
+    const modal = this.modal.open(CreateProductComponent);
+    modal.result.then((product) => {
+      console.log(product);
+    }, () => {
     });
   }
 
