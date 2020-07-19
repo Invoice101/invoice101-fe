@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {
+  faEdit,
   faPlusSquare as farPlusSquare,
   faSearch,
   faSortAlphaDown,
   faSortAlphaUp,
   faSortAmountDown,
-  faSortAmountUp
+  faSortAmountUp,
 } from '@fortawesome/free-solid-svg-icons';
 import {ProductInterface} from '../../../../../interfaces/product.interface';
 import {HttpParams} from '@angular/common/http';
@@ -23,6 +24,7 @@ import {CreateProductComponent} from '../create-product/create-product.component
 export class ListProductsComponent implements OnInit {
   farPlusSquare = farPlusSquare;
   faSearch = faSearch;
+  faEdit = faEdit;
 
   searchText: string;
   sortContext: { name: string, icon: IconDefinition, value: string };
@@ -85,6 +87,19 @@ export class ListProductsComponent implements OnInit {
     const modal = this.modal.open(CreateProductComponent);
     modal.result.then((product) => {
       console.log(product);
+    }, () => {
+    });
+  }
+
+  openEdit(product: ProductInterface) {
+    const modal = this.modal.open(CreateProductComponent);
+    modal.componentInstance.mode = 'edit';
+    modal.componentInstance.product = product;
+    modal.result.then((modifiedProduct: ProductInterface) => {
+      const index = this.products.findIndex(p => p.id === product.id);
+      if (index > -1) {
+        this.products.splice(index, 1, modifiedProduct);
+      }
     }, () => {
     });
   }

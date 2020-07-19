@@ -41,14 +41,18 @@
       <th scope="col">HSN/SAC</th>
       <th scope="col">Price(Incl tax)</th>
       <th scope="col">Tax</th>
+      <th scope="col"></th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let product of products">
-      <td scope="row">{{product.name}}</td>
+      <td>{{product.name}}</td>
       <td>{{product.hsn_sac}}</td>
       <td>{{product.price}}</td>
       <td>{{product.tax_percentage}}%</td>
+      <td>
+        <fa-icon (click)="openEdit(product)" [icon]="faEdit" class="clickable"></fa-icon>
+      </td>
     </tr>
     </tbody>
   </table>

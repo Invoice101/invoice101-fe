@@ -147,7 +147,7 @@
   "defaultProject": "invoice101-fe",
   "schematics": {
     "@schematics/angular:component": {
-      "styleext": "scss"
+      "style": "scss"
     }
   },
   "cli": {

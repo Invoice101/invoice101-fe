@@ -1,12 +1,23 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+@include media-breakpoint-up(sm) {
+  .body-wrapper {
+    margin-left: 3rem;
+  }
+}
+
+
 .layout-wrapper {
   min-height: 100vh;
-}
 
-.content-wrapper {
-  flex: 1 1 auto;
-}
+  .content-wrapper {
+    flex: 1 1 auto;
 
-
-.body-wrapper {
-  flex: 1 1 auto;
+    .body-wrapper {
+      background-color: #e3e4e5 !important;
+      flex: 1 1 auto;
+    }
+  }
 }

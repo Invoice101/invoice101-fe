@@ -24,11 +24,11 @@ export class ContactService {
     return this.httpClient.post<ContactInterface>(CONTACT_APIS.contact, postObj);
   }
 
-  updateContact(patchObj: object): Observable<ContactInterface> {
-    return this.httpClient.patch<ContactInterface>(CONTACT_APIS.contact, patchObj);
+  updateContact(id: string, patchObj: object): Observable<ContactInterface> {
+    return this.httpClient.patch<ContactInterface>(CONTACT_APIS.contact + id + '/', patchObj);
   }
 
-  getContactById(id: number): Observable<ContactInterface> {
-    return this.httpClient.get<ContactInterface>(CONTACT_APIS.contact + id.toString() + '/');
+  getContactById(id: string): Observable<ContactInterface> {
+    return this.httpClient.get<ContactInterface>(CONTACT_APIS.contact + id + '/');
   }
 }

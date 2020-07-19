@@ -2,7 +2,7 @@
   <div (click)="$event.stopPropagation()" class="ml-auto profile__options" ngbDropdown>
     <fa-icon [icon]="faEllipsisV" class="px-2" ngbDropdownToggle></fa-icon>
     <div ngbDropdownMenu>
-      <button ngbDropdownItem>Edit</button>
+      <button [routerLink]="['/dashboard', 'contact', customer.id, 'edit']" ngbDropdownItem>Edit</button>
       <button ngbDropdownItem>Create invoice</button>
     </div>
   </div>

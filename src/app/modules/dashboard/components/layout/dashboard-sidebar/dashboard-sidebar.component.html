@@ -1,23 +1,42 @@
-<div class="sidebar-wrapper border-right">
+<div class="sidebar-wrapper">
   <div class="sidebar-list-group d-flex align-items-center justify-content-around flex-sm-column">
-    <div [routerLink]="['/dashboard', 'contact', 'list']" class="sidebar-list-item text-light" ngbPopover="Contacts"
-         placement="right" routerLinkActive="active" triggers="mouseenter:mouseleave">
+
+    <div [routerLink]="['/dashboard']" class="sidebar-list-item logo"
+         routerLinkActive="active">
+      <img alt="Invoice 101" src="assets/Logo.png">
+    </div>
+
+    <div [routerLink]="['/dashboard', 'contact', 'list']" class="sidebar-list-item"
+         routerLinkActive="active">
       <fa-icon [icon]="faAddressBook"></fa-icon>
+      <div class="sidebar-list-item-text">Contacts</div>
     </div>
 
-    <div [routerLink]="['/dashboard', 'product', 'list']" class="sidebar-list-item text-light"
-         ngbPopover="Products/Services" placement="right" routerLinkActive="active" triggers="mouseenter:mouseleave">
-      <fa-icon [icon]="faShoppingCart"></fa-icon>
+    <div [routerLink]="['/dashboard', 'product', 'list']" class="sidebar-list-item"
+         routerLinkActive="active">
+      <fa-icon [icon]="faShoppingBag"></fa-icon>
+      <div class="sidebar-list-item-text">Products</div>
     </div>
 
-    <div [routerLink]="['/dashboard', 'invoice', 'list']" class="sidebar-list-item text-light" ngbPopover="Invoices"
-         placement="right" routerLinkActive="active" triggers="mouseenter:mouseleave">
+    <div [routerLink]="['/dashboard', 'invoice', 'list']" class="sidebar-list-item"
+         routerLinkActive="active">
       <fa-icon [icon]="faFilePdf"></fa-icon>
+      <div class="sidebar-list-item-text">Invoices</div>
     </div>
 
-    <div [routerLink]="['/dashboard', 'expenses', 'list']" class="sidebar-list-item text-light" ngbPopover="Expenses"
-         placement="right" routerLinkActive="active" triggers="mouseenter:mouseleave">
+    <div [routerLink]="['/dashboard', 'expenses', 'list']" class="sidebar-list-item"
+         routerLinkActive="active">
       <fa-icon [icon]="faDollarSign"></fa-icon>
+      <div class="sidebar-list-item-text">Expenses</div>
+    </div>
+
+    <div class="sidebar-list-item text-light user" ngbDropdown>
+      <app-profile-icon [image]="user?.photoURL" [name]="user?.displayName" ngbDropdownToggle></app-profile-icon>
+      <div class="sidebar-list-item-text" ngbDropdownToggle>{{user?.displayName}}</div>
+      <div aria-labelledby="dropdownBasic1" ngbDropdownMenu>
+        <button [routerLink]="['/profile', 'edit']" ngbDropdownItem>Profile</button>
+        <button (click)="logout()" ngbDropdownItem>Logout</button>
+      </div>
     </div>
   </div>
 </div>

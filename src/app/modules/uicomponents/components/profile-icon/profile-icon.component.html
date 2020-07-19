@@ -1,9 +1,9 @@
 <div class="clickable">
-  <img *ngIf="image; else characterCircle" [src]="image" alt="" class="rounded" width="42">
+  <img *ngIf="image; else characterCircle" [src]="image" alt="" class="rounded" width="32">
 
   <ng-template #characterCircle>
     <div class="icon-wrapper rounded-circle">
-      <i class="icon-name-display text-dark">{{name[0]}}</i>
+      <i class="icon-name-display text-dark">{{name ? name[0] : 'I'}}</i>
     </div>
   </ng-template>
 </div>

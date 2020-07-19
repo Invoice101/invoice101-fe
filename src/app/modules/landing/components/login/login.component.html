@@ -1,14 +1,13 @@
 <div class="loginWrapper d-flex align-items-center justify-content-center">
   <div class="card">
     <div class="card-body">
-      <div>
-        <h1 class="logo-brand">Invoice 101</h1>
-        <a routerLink="/forgotpassword" style="float: right; margin-bottom: 15px;">Forgot Password.?</a>
+      <div class="text-center">
+        <img alt="Invoice 101" src="assets/Logo.png">
       </div>
-      <form [formGroup]="loginForm" autocomplete="off" id="loginFormId">
+      <form (validSubmit)="login()" [formGroup]="loginForm" autocomplete="off" class="mt-4" id="loginFormId">
         <div class="form-group">
-          <label for="userNameInput" style="margin-top: 15px;"> Username</label>
-          <input autocomplete="chrome-off" class="form-control" formControlName="username" id="userNameInput"
+          <label for="emailInput"> Username</label>
+          <input autocomplete="chrome-off" class="form-control" formControlName="email" id="emailInput"
                  type="text">
         </div>
 
@@ -22,16 +21,26 @@
           {{loginError.errorMessage}}
         </div>
 
-        <div class="text-center">
-          <label style="float: left;">Not a member yet.?<span><a routerLink="/register">SIGN IN</a></span></label>
-          <button (click)="login()" [disabled]="!loginForm.valid" class="btn btn-primary bt-sm"
-                  *ngIf="!loggingIn" form="loginFormId" type="submit" style="float: right;">
-            Login
-          </button>
-
-          <app-loading *ngIf="loggingIn"></app-loading>
+        <div class="text-right">
+          <a [routerLink]="['/forgot-password']" class="clickable">Forgot Password</a>
         </div>
       </form>
+
+      <div class="text-center mt-2">
+        <button *ngIf="!loggingIn" class="btn btn-primary bt-sm" form="loginFormId" type="submit">
+          Login
+        </button>
+        <app-loading *ngIf="loggingIn"></app-loading>
+      </div>
+
+      <div class="mt-5 text-center">
+        <fa-icon (click)="loginWithProvider('google')" [icon]="faGoogle" class="clickable" size="2x"
+                 style="color: #de5246"></fa-icon>
+      </div>
+
+      <div class="mt-5 text-center">
+        <span>Don't have an account? <a [routerLink]="['/register']" class="clickable">Sign up</a></span>
+      </div>
     </div>
   </div>
 </div>

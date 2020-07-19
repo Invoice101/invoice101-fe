@@ -17,6 +17,10 @@ import {ToastrModule} from 'ngx-toastr';
 import {SharedModule} from '../shared/shared.module';
 import {ListProductsComponent} from './components/product/list-products/list-products.component';
 import {CreateProductComponent} from './components/product/create-product/create-product.component';
+import {ListInvoiceComponent} from './components/invoice/list-invoice/list-invoice.component';
+import {CreateInvoiceComponent} from './components/invoice/create-invoice/create-invoice.component';
+import {EditInvoiceComponent} from './components/invoice/edit-invoice/edit-invoice.component';
+import {ViewInvoiceComponent} from './components/invoice/view-invoice/view-invoice.component';
 
 
 @NgModule({
@@ -29,6 +33,10 @@ import {CreateProductComponent} from './components/product/create-product/create
     ContactTileComponent,
     ListProductsComponent,
     CreateProductComponent,
+    ListInvoiceComponent,
+    CreateInvoiceComponent,
+    EditInvoiceComponent,
+    ViewInvoiceComponent,
   ],
   imports: [
     CommonModule,

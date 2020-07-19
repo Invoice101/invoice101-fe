@@ -2,22 +2,33 @@
   cursor: pointer;
 }
 
-.logo-brand {
-  font-family: 'Marck Script', cursive;
-  word-spacing: -8px;
-}
-
 label {
   margin-bottom: 0 !important;
   padding-bottom: 0 !important;
 }
 
-ng-select {
-  min-width: 100%;
-}
-
 textarea {
   resize: none;
+}
+
+body {
+  &::-webkit-scrollbar {
+    width: 0.25rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--dark);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--primary);
+  }
+}
+
+
+/* ng-select customization */
+ng-select {
+  min-width: 100%;
 }
 
 .ng-select .ng-select-container {
@@ -27,6 +38,9 @@ textarea {
 .ng-select.ng-select-single .ng-select-container {
   height: 28.38px;
 }
+
+/* ng-select customization end */
+
 
 .app-page-title {
   display: flex;
@@ -54,6 +68,12 @@ input::-webkit-inner-spin-button {
 /* Remove spinners for number mozilla */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+
+/* ngb form validation - angular 9 and above fix*/
+span.invalid-feedback {
+  color: red !important;
 }
 
 

@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <div class="modal-title">Create Product/Service</div>
+  <div class="modal-title"><span class="text-capitalize">{{mode}}</span> Product/Service</div>
 </div>
 
 <div class="modal-body">
@@ -48,7 +48,7 @@
   <button (click)="cancel()" class="btn btn-sm btn-danger" type="button">
     Cancel
   </button>
-  <button class="btn btn-sm btn-primary ml-2" form="createProductForm" type="submit">
-    Create
+  <button class="btn btn-sm btn-primary ml-2 text-capitalize" form="createProductForm" type="submit">
+    {{mode}}
   </button>
 </div>
