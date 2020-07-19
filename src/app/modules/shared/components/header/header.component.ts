@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserInterface} from '../../../../interfaces/user.interface';
 import {SessionService} from '../../../../services/session.service';
 import {Router} from '@angular/router';
-import {AuthenticationService} from '../../../../services/authentication.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -10,19 +10,18 @@ import {AuthenticationService} from '../../../../services/authentication.service
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  user: UserInterface;
+  user: Observable<UserInterface>;
 
   constructor(private sessionService: SessionService,
-              private router: Router,
-              private authenticationService: AuthenticationService) {
+              private router: Router) {
   }
 
   ngOnInit(): void {
-    this.user = this.sessionService.user;
+    this.user = this.sessionService.user$;
   }
 
   logout() {
-    this.authenticationService.clearCredentials();
+    this.sessionService.logout();
     this.router.navigate(['/login']);
   }
 

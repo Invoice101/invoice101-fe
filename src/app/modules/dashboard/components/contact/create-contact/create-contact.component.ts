@@ -42,7 +42,9 @@ export class CreateContactComponent implements OnInit {
 
   ngOnInit(): void {
     this.initialLoading = true;
-    this.user = this.sessionService.user;
+    this.sessionService.user$.subscribe(response => {
+      this.user = response;
+    });
 
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       this.mode = paramMap.has('id') ? 'edit' : 'create';
@@ -99,7 +101,7 @@ export class CreateContactComponent implements OnInit {
 
   private buildForm() {
     this.contactForm = this.fb.group({
-      owner: this.fb.control(this.user.id, Validators.required),
+      owner: this.fb.control(this.user.uid, Validators.required),
       name: this.fb.control(this.contact?.name || '', [Validators.required, Validators.maxLength(255)]),
       email: this.fb.control(this.contact?.email || '', [Validators.required, Validators.maxLength(254), Validators.email]),
 

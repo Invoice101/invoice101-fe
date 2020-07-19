@@ -2,7 +2,8 @@
   <div [routerLink]="['/dashboard']" class="logo-brand logo clickable">Invoice 101</div>
 
   <div class="d-inline-block" ngbDropdown>
-    <app-profile-icon [image]="user.profile_image" [name]="user.name" ngbDropdownToggle></app-profile-icon>
+    <app-profile-icon [image]="(user | async).photoURL" [name]="(user | async).displayName"
+                      ngbDropdownToggle></app-profile-icon>
     <div aria-labelledby="dropdownBasic1" ngbDropdownMenu>
       <button [routerLink]="['/profile', 'edit']" ngbDropdownItem>Profile</button>
       <button (click)="logout()" ngbDropdownItem>Logout</button>

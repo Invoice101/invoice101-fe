@@ -8,6 +8,7 @@ import {ToastrService} from 'ngx-toastr';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {ProductInterface} from '../../../../../interfaces/product.interface';
 import {Observable} from 'rxjs';
+import {UserInterface} from '../../../../../interfaces/user.interface';
 
 @Component({
   selector: 'app-create-product',
@@ -24,6 +25,8 @@ export class CreateProductComponent implements OnInit {
   @Input() mode: 'create' | 'edit' = 'create';
   @Input() product: ProductInterface;
 
+  private user: UserInterface;
+
   constructor(private fb: FormBuilder,
               private sessionService: SessionService,
               private extraService: ExtraService,
@@ -34,6 +37,9 @@ export class CreateProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildForm();
+    this.sessionService.user$.subscribe(response => {
+      this.user = response;
+    });
 
     this.extraService.getUOMs().subscribe(response => {
       this.uoms = response;
@@ -72,7 +78,7 @@ export class CreateProductComponent implements OnInit {
 
   private buildForm() {
     this.productForm = this.fb.group({
-      user: [this.sessionService.user.id],
+      user: [this.user.uid],
       name: this.fb.control(this.product?.name || '', [Validators.required, Validators.maxLength(500)]),
       description: this.fb.control(this.product?.description || '', [Validators.maxLength(2000)]),
       hsn_sac: this.fb.control(this.product?.hsn_sac || '', [Validators.maxLength(30)]),

@@ -7,8 +7,9 @@ import {LoginComponent} from './components/login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {UiComponentsModule} from '../uicomponents/uicomponents.module';
-import { RegisterComponent } from './components/register/register.component';
-import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
+import {RegisterComponent} from './components/register/register.component';
+import {ForgotpasswordComponent} from './components/forgotpassword/forgotpassword.component';
+import {NgBootstrapFormValidationModule} from 'ng-bootstrap-form-validation';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     FormsModule,
+    NgBootstrapFormValidationModule,
     ReactiveFormsModule,
     FontAwesomeModule,
     UiComponentsModule,

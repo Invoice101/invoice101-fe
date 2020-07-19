@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AuthenticationService} from '../../../../services/authentication.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {delay} from 'rxjs/operators';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {SessionService} from '../../../../services/session.service';
+import {faGoogle} from '@fortawesome/free-brands-svg-icons';
+
 
 @Component({
   selector: 'app-login',
@@ -10,6 +12,8 @@ import {delay} from 'rxjs/operators';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  faGoogle = faGoogle;
+
   loginForm: FormGroup;
   loginError = {
     errorMessage: '',
@@ -20,37 +24,55 @@ export class LoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private router: Router,
+              public  afAuth: AngularFireAuth,
               private route: ActivatedRoute,
-              private authenticationService: AuthenticationService) {
+              private sessionService: SessionService) {
   }
 
   ngOnInit(): void {
-    this.authenticationService.clearCredentials();
+    this.afAuth.signOut();
+
     this.loginForm = this.fb.group({
-      username: this.fb.control('', [Validators.required, Validators.maxLength(255)]),
+      email: this.fb.control('', [Validators.required, Validators.email, Validators.maxLength(255)]),
       password: this.fb.control('', [Validators.required])
     });
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || null;
   }
 
+  loginWithProvider(provider: 'google' | 'facebook') {
+    this.loggingIn = true;
+    if (provider === 'google') {
+      this.sessionService.googleSignIn().then(() => {
+        this.router.navigate(['/dashboard']);
+        this.loggingIn = false;
+      }, () => {
+        this.loggingIn = false;
+      });
+    }
+  }
+
   login() {
     this.loggingIn = true;
     this.loginError.hasError = false;
+    const {email, password} = this.loginForm.value;
 
-    const {username, password} = this.loginForm.value;
-    this.authenticationService.login(username, password)
-      .pipe(delay(1000))
-      .subscribe(() => {
-        if (this.returnUrl) {
-          this.router.navigateByUrl(this.returnUrl);
-        } else {
-          this.router.navigate(['/dashboard']);
-        }
-        this.loggingIn = false;
-      }, errorResponse => {
-        this.loggingIn = false;
-        this.loginError.hasError = true;
-        this.loginError.errorMessage = errorResponse.error.detail;
-      });
+    this.afAuth.signInWithEmailAndPassword(email, password).then((response) => {
+      this.router.navigate(['/dashboard']);
+      this.loggingIn = false;
+    }, (error) => {
+      if (error.code === 'auth/user-not-found') {
+        this.loginError.errorMessage = 'It looks like you have not signed up with us.';
+      } else if (error.code === 'auth/wrong-password') {
+        this.loginError.errorMessage = 'Invalid Password.';
+      } else if (error.code === 'auth/too-many-requests') {
+        this.loginError.errorMessage = 'Too many sign in attempts. Please try later.';
+      } else if (error.code === 'user-disabled') {
+        this.loginError.errorMessage = 'User has been disabled.';
+      } else {
+        this.loginError.errorMessage = 'Something went wrong. Try again later.';
+      }
+      this.loginError.hasError = true;
+      this.loggingIn = false;
+    });
   }
 }

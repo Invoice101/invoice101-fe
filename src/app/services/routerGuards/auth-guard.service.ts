@@ -1,8 +1,9 @@
 import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
-import {Observable} from 'rxjs';
+import {ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot} from '@angular/router';
 import {isPlatformServer} from '@angular/common';
 import {SessionService} from '../session.service';
+import {Observable, of} from 'rxjs';
+import {map, take} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,25 +15,21 @@ export class AuthGuard implements CanActivate, CanActivateChild {
               private sessionService: SessionService) {
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     return this.checkAuth(state);
   }
 
-  canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     return this.checkAuth(state);
   }
 
-  private checkAuth(state: RouterStateSnapshot) {
+  private checkAuth(state: RouterStateSnapshot): Observable<boolean> {
     if (isPlatformServer(this.platformId)) {
       this.router.navigate(['/server-load'], {queryParams: {returnUrl: state.url}});
-      return false;
+      return of(false);
     } else {
-      if (!this.sessionService.isLoggedIn()) {
-        this.router.navigate(['/login'], {queryParams: {returnUrl: state.url}});
-        return false;
-      } else {
-        return true;
-      }
+      // TODO: Check for login status
+      return this.sessionService.user$.pipe(take(1), map(user => !!user));
     }
   }
 }
