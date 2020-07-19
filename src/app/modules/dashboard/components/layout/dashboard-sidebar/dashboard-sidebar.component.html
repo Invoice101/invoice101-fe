@@ -1,24 +1,30 @@
 <div class="sidebar-wrapper">
   <div class="sidebar-list-group d-flex align-items-center justify-content-around flex-sm-column">
-    <div [routerLink]="['/dashboard', 'contact', 'list']" class="sidebar-list-item text-light"
+
+    <div [routerLink]="['/dashboard']" class="sidebar-list-item logo"
+         routerLinkActive="active">
+      <img alt="Invoice 101" src="assets/Logo.png">
+    </div>
+
+    <div [routerLink]="['/dashboard', 'contact', 'list']" class="sidebar-list-item"
          routerLinkActive="active">
       <fa-icon [icon]="faAddressBook"></fa-icon>
       <div class="sidebar-list-item-text">Contacts</div>
     </div>
 
-    <div [routerLink]="['/dashboard', 'product', 'list']" class="sidebar-list-item text-light"
+    <div [routerLink]="['/dashboard', 'product', 'list']" class="sidebar-list-item"
          routerLinkActive="active">
       <fa-icon [icon]="faShoppingBag"></fa-icon>
       <div class="sidebar-list-item-text">Products</div>
     </div>
 
-    <div [routerLink]="['/dashboard', 'invoice', 'list']" class="sidebar-list-item text-light"
+    <div [routerLink]="['/dashboard', 'invoice', 'list']" class="sidebar-list-item"
          routerLinkActive="active">
       <fa-icon [icon]="faFilePdf"></fa-icon>
       <div class="sidebar-list-item-text">Invoices</div>
     </div>
 
-    <div [routerLink]="['/dashboard', 'expenses', 'list']" class="sidebar-list-item text-light"
+    <div [routerLink]="['/dashboard', 'expenses', 'list']" class="sidebar-list-item"
          routerLinkActive="active">
       <fa-icon [icon]="faDollarSign"></fa-icon>
       <div class="sidebar-list-item-text">Expenses</div>
@@ -26,6 +32,7 @@
 
     <div class="sidebar-list-item text-light" ngbDropdown>
       <app-profile-icon [image]="user.profile_image" [name]="user.name" ngbDropdownToggle></app-profile-icon>
+      <div class="sidebar-list-item-text" ngbDropdownToggle>{{user.name}}</div>
       <div aria-labelledby="dropdownBasic1" ngbDropdownMenu>
         <button [routerLink]="['/profile', 'edit']" ngbDropdownItem>Profile</button>
         <button (click)="logout()" ngbDropdownItem>Logout</button>
