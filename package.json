@@ -28,7 +28,6 @@
     "@ng-bootstrap/ng-bootstrap": "^6.0.3",
     "@ng-select/ng-select": "^4.0.0",
     "bootstrap": "^4.4.1",
-    "cordova-plugin-background-mode": "^0.7.3",
     "ng-bootstrap-form-validation": "^5.0.0",
     "ngx-toastr": "^12.0.1",
     "rxjs": "~6.5.4",

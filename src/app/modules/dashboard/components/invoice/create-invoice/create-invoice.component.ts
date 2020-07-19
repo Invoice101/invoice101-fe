@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-create-invoice',
@@ -6,11 +7,18 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./create-invoice.component.scss']
 })
 export class CreateInvoiceComponent implements OnInit {
+  invoiceForm: FormGroup;
 
-  constructor() {
+  constructor(private fb: FormBuilder) {
   }
 
   ngOnInit(): void {
+    this.buildForm();
   }
 
+  private buildForm() {
+    this.invoiceForm = this.fb.group({
+      // subject: this.fb.control('');
+    });
+  }
 }
