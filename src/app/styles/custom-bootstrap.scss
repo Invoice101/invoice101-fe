@@ -1,23 +1,24 @@
-$font-size-base: .875rem;
+//$font-size-base: .875rem;
 
 
 // Custom Buttons
 
 $theme-colors: (
   "primary": #0779e4,
-  "danger": #ff4136
+  "danger": #ff4136,
+  "salmon": #FA8072
 );
 
-$btn-padding-y: .25rem !default;
-$btn-padding-x: .5rem !default;
-$btn-font-family: null !default;
-$btn-focus-width: .2rem !default;
-
-$btn-padding-y-sm: .15rem !default;
-$btn-padding-x-sm: .375rem !default;
-
-$btn-padding-y-lg: .375rem !default;
-$btn-padding-x-lg: .75rem !default;
+//$btn-padding-y: .25rem !default;
+//$btn-padding-x: .5rem !default;
+//$btn-font-family: null !default;
+//$btn-focus-width: .2rem !default;
+//
+//$btn-padding-y-sm: .15rem !default;
+//$btn-padding-x-sm: .375rem !default;
+//
+//$btn-padding-y-lg: .375rem !default;
+//$btn-padding-x-lg: .75rem !default;
 
 .dropdown-toggle::after {
   display: none !important;
